@@ -1,0 +1,61 @@
+/*买家申请退款*/
+body {
+    background-color: #ffffff;
+    position: relative;
+}
+.nav-ct .nav-ct-bottom .nav-ct-b-l .content-div {
+    width: 839px;
+    border-top:none;
+}
+.nav-ct .nav-ct-bottom .nav-ct-b-l .content-div .tksp {
+    min-height: 20px;
+    padding: 0px 0px 20px 0px;
+}
+.nav-ct .nav-ct-bottom .nav-ct-b-l .content-div .tkyy select{
+    width: 193px;
+    height: 26px;
+    margin-left: -4px;
+}
+.nav-ct .nav-ct-bottom .nav-ct-b-l .content-div .tkje input{
+    width: 189px;
+    height: 20px;
+}
+.nav-ct .nav-ct-bottom .nav-ct-b-l .content-div .tksm>span{
+    vertical-align: top;
+    line-height: 40px;
+}
+.nav-ct .nav-ct-bottom .nav-ct-b-l .content-div .sctp{
+    border-bottom:1px solid #ccc;
+}
+.nav-ct .nav-ct-bottom .nav-ct-b-l .content-div .sctp>span {
+    color: #666;
+    vertical-align: top;
+    line-height: 40px;
+}
+.nav-ct .nav-ct-bottom .nav-ct-b-l .content-div .sctp>p{
+    padding-left: 65px;
+    font-size:12px;
+    color: #999999;
+    margin-top: 10px;
+}
+
+.wzText{
+    width: 610px;
+    height: 112px;
+    line-height: 20px;
+    font-size:12px;
+    color: #333333;
+}
+.btn{
+    width: 150px;
+    height: 45px;
+    margin: 20px 0px 30px 0px;
+    border:none;
+    color: #fff;
+    background-color: #2c99cd;
+    border-radius: 2px;
+    font-size:20px;
+    font-weight: bold;
+
+}
+

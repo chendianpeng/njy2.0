@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../css/style_end/style.css">
+    <link rel="stylesheet" href="../../css/style_end/bootstrap.min.css">
+    <script src="../js/index.js"></script>
+    <script src="../../js/vendor/jquery-1.9.0.min.js"></script>
+    <script src="../../js/lib/lib_end/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+<div class="Top">
+    <p>农加易管理系统</p>
+    <div class="Right_top">
+        <span>您好，admin！</span>
+        <img src="../image/back.gif" alt=""><span>退出</span>
+
+    </div>
+</div>
+<div class="Left_list">
+    <div class="list_main">
+
+        <ul>
+            <li> <img src="../image/ri2.gif" alt="">订单管理<span>&nu;</span></li>
+            <li style="display: none"> <img src="../image/ri2.gif" alt="">订单分配<span>&nu;</span></li>
+            <li style="display: none"> <img src="../image/ri2.gif" alt="">订单处理<span>&nu;</span></li>
+        </ul>
+    </div>
+
+</div>
+<div class="list_foot">
+    <div class="list"><img src="../image/zoom.gif" alt=""><p>审核管理</p><span>&nu;</span></div>
+</div>
+<div class="list_about">
+    <div class="nav_top">
+        <span>您的位置：</span><span>审核管理 > 供应商管理</span>
+
+    </div>
+    <div class="head"></div>
+    <div class="means">
+        <h1 style="font-size:16px;color: #333333 ">供应商审核</h1>
+        <form novalidate></form>
+        分配状态：<input type="text" class="square" placeholder="&nbsp;&nbsp;全部"> <input type="text" class="square" placeholder="&nbsp;输入商家名称或业务员账号">
+        <input type="button" name="button" value="搜索" class="btn2">
+
+    </div>
+    <div class="Tb">
+    </div>
+</div>
+</div>
+
+
+</body>
+</html>

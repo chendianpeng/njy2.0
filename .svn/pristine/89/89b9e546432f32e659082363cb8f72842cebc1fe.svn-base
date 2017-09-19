@@ -1,0 +1,111 @@
+angular.module("njy-model", ["njy-config"])
+  .config(["$httpProvider", function($httpProvider) {
+    $httpProvider.defaults.cache = false;
+    $httpProvider.defaults.useXDomain = true;
+    $httpProvider.defaults.headers.post = {
+      "Content-Type": "application/json"
+    };
+    delete $httpProvider.defaults.headers
+      .common["X-Requested-Width"];
+  }])
+  //公共请求方法
+  .factory("fetch", ["$http", "$q", "NJYCON", function($http, $q, NJYCON) {
+    var _ajax = function(type, url, data) {
+      var dtd = $q.defer();
+
+      // $http({
+      //   method: type,
+      //   url: NJYCON.loginUrl + url,
+      //   withCredentials: true,
+      //   headers: {
+      //     "sessionId": getCookie("token")
+      //   },
+      //   data: data || ""
+      // })
+      jq.ajax({
+  			type: type,
+  			url: NJYCON.hostUrl + url,
+  			cache: false,
+  			crossDomain: true,
+  			xhrFields: {
+  				withCredentials: true
+  			},
+        beforeSend: function(xhr) {
+  				xhr.setRequestHeader('sessionId', getCookie("token"));
+  			}
+      })
+      .then(function(_data) {
+        if(typeof(_data)=="string"){
+          _data=JSON.parse(_data);
+        }
+        if(_data.success){
+          dtd.resolve(_data.content);
+        }else{
+          dtd.reject(_data.sessionStatus,_data.errorMessage);
+        }
+      }, function(err) {
+        dtd.reject(-1,err.message);
+      });
+      return dtd.promise;
+    };
+    var get = function(url, data) {
+      return _ajax("GET", url, data);
+    };
+    var post = function(url, data) {
+      return _ajax("POST", url, data);
+    };
+    return {
+      get: get,
+      post: post
+    };
+  }])
+  .factory("buyCar", ["fetch", function(fetch) {
+    //删除购物车中的商品
+    var deleteByIds = function(_data) {
+      /*
+      CarDelVo {
+      carNo (string, optional): 购物车编码 ,
+      goodsIds (Array[integer], optional): 商品主键集合
+      }*/
+      return fetch.post("api/car/carInfo/edit/deleteByIds", _data);
+    };
+    //保存/编辑购物车（当返回操作失败时：判断auithStatus=0：采购商未通过审核，auithStatus=2：没有该账号的采购商信息）
+    var save = function(_data) {
+      /*{
+      "amount": 0,
+      "goodsId": 0,
+      "supplierId": 0
+    }*/
+      return fetch.post("api/car/carInfo/edit/save", _data);
+    };
+
+    var listAllGroup = function(_data) {
+      /*{
+       "goodsIds": [
+       0
+       ],
+       "isClose": 0,
+       "supplierIds": [
+       0
+       ]
+       }*/
+      return fetch.post("api/car/carInfo/find/listAllGroup", _data);
+    };
+
+    return {
+      deleteByIds: deleteByIds,
+      save: save,
+      listAllGroup: listAllGroup
+    };
+  }])
+  //地区区域相关接口
+  .factory("addrArea",["fetch",function(fetch){
+    //根据区域id得到该地区下的所有子地区集.为“0”则是顶级父集，即得到所有省份
+    var findByParentId=function(parentId){
+      return fetch.get("api/area/area/find/findByParentId/"+parentId);
+    };
+
+    return {
+      findByParentId:findByParentId
+    };
+  }])

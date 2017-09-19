@@ -1,0 +1,23 @@
+<div>
+  <style>
+  .njy-addr-area{}
+  .njy-addr-area select{width:136px;height:36px;line-height:36px;border-color:#dcdcdc;
+    padding-left:0.25em;color:#666;font-size:14px;margin-left:8px;}
+  .njy-addr-area .dpn{display:none}
+  .njy-addr-area .gray{color:#999;}
+  .njy-addr-area .gray option{color:initial;}
+  .njy-addr-area .input option[value^="?"]{display:none;}
+  </style>
+  <div class="njy-addr-area">
+      <select class="input" ng-model="nProvince" ng-class="{'gray':!nProvince}" name="nProvince" ng-change="changeProvince(nProvince)">
+        <option value="" class="dpn">省</option>
+        <option ng-repeat="province in area.provinces">{{province.areaName}}</option>
+      </select><select class="input" ng-model="nCity" ng-class="{'gray':!nCity}" name="nCity" ng-change="changeCity(nCity)">
+        <option value="" class="dpn">市</option>
+        <option ng-repeat="city in area.cities">{{city.areaName}}</option>
+      </select><select class="input" ng-model="nCounty" ng-class="{'gray':!nCounty}" name="nCounty" ng-change="changeCounty(nCounty)">
+        <option value="" class="dpn">县</option>
+        <option ng-repeat="county in area.counties">{{county.areaName}}</option>
+      </select>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+/*买家确认
+
+ */
+/*供应商信息*/
+.order-main .order-mian-gy {
+    padding-top: 20px;
+    border-bottom: 1px solid #E2E2E2;
+    font-size: 12px;
+    color: #333;
+}
+
+.order-main .order-mian-gy .gy {
+    margin-bottom: 20px;
+}
+
+.order-main .order-mian-gy .gy-l {
+    width: 322px;
+    border-right: 1px solid #ccc;
+    height: 50px;
+    display: inline-block;
+    margin-bottom: 20px;
+
+}
+
+.order-main .order-mian-gy .gy-l .xx, .order-main .order-mian-gy .gy-r .lxr {
+    margin-bottom: 20px;
+}
+
+.order-main .order-mian-gy .gy-r {
+    height: 50px;
+    display: inline-block;
+    padding-left: 54px;
+    margin-bottom: 20px;
+}
+
+.order-main .order-mian-gy .gy-l .xx > i, .order-main .order-mian-gy .gy-l .szd > i, .order-main .order-mian-gy .gy-r .lxr > i, .order-main .order-mian-gy .gy-r .lxfs > i {
+    width: 80px;
+    display: inline-block;
+}
+
+/*以上是买家确认订单阶段的供应商信息*/

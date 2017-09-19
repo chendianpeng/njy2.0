@@ -1,0 +1,141 @@
+
+
+.dorpmenu button{
+    width: 109px;
+    height: 38px;
+    background-color: #ffffff;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+
+
+
+
+
+
+/*公共布局*/
+
+
+
+
+
+
+.nav_top{
+    margin-left: 38px;
+    margin-top: 24px;
+    display: inline-block;
+    padding-bottom: 10px;
+
+}
+.nav_top span:first-of-type{
+    color: #999999;
+
+}
+.nav_top span+span{
+    color: #666666;
+}
+.head{
+    left: 239px;
+
+    border-bottom:1px solid #ccc;
+}
+.means{
+    padding-top: 20px;
+    margin-left: 58px;
+}
+.means input{
+    margin-left: 8px;
+    height: 30px;
+}
+.square{
+    width: 180px;
+}
+.btn2{
+    background: #2ca8f4;
+    width: 50px;
+    height: 30px;
+    font-size: 14px;
+    color: #ffffff;
+    border-radius:2px;
+}
+.Top{
+    width: 1920px;
+    height: 60px;
+    background: #50abe3;
+}
+.Top p{
+    position: absolute;
+    margin-left: 28px;
+    font-size: 26px;
+    color: #f5f5f5;
+    line-height: 60px;
+}
+.Top .Right_top{
+    float: right;
+    margin-right: 36px;
+    display: inline-block;
+    line-height: 60px;
+
+}
+.Right_top img{
+    padding-right:6px;
+    width: 18px;
+    height: 18px;
+}
+.Right_top span{
+    font-size: 12px;
+    padding-right: 18px;
+    color: #ffffff;
+}
+
+.list_about{
+    float: left;
+    width: 1200px;
+    position: absolute;
+    top: 60px;
+    bottom: 0px;
+    left: 240px;
+}
+
+
+.Left_list{
+    width: 238px;
+    height: 360px;
+    background: #50abe3;
+    float: left;
+
+}
+
+.list_main li{
+    margin-left: 60px;
+    margin-top: 22px;
+    font-size:16px ;
+    color: #ffffff;
+}
+.list_main li span{
+    float: right;
+    margin-right: 12px;
+}
+.list{
+    width: 238px;
+    margin-top: 24px;
+    position: absolute;
+}
+
+.list p{
+    display: inline-block;
+    font-size: 16px;
+    color: #ffffff;
+    padding-left: 10px;
+}
+.list img{
+    margin-left: 24px;
+}
+.list span{
+    float: right;
+    margin-right: 12px;
+    color: #ffffff;
+
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>供应商审核</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <base href="/">
+    <link rel="stylesheet" href="./css/style_end/public.css">
+    <link rel="stylesheet" href="./css/style_end/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style_end/layout.css">
+    <link rel="stylesheet" href="./css/style_end/style.css">
+    <script src="./js/vendor/jquery-1.9.0.min.js"></script>
+    <script src="./js/lib/lib_end/bootstrap.min.js"></script>
+
+
+
+</head>
+<body>
+<div class="Top">
+    <p>农加易管理系统</p>
+    <div class="Right_top">
+        <span>您好，admin！</span>
+        <img src="./image/back.gif" alt=""><span>退出</span>
+
+    </div>
+</div>
+<div class="Left_list">
+    <div class="list_main">
+
+        <ul>
+            <li> <img src="./image/ri2.gif" alt="">订单管理<span>&nu;</span></li>
+            <li style="display: none"> <img src="./image/ri2.gif" alt="">订单分配<span>&nu;</span></li>
+            <li style="display: none"> <img src="./image/ri2.gif" alt="">订单处理<span>&nu;</span></li>
+        </ul>
+    </div>
+
+</div>
+<div class="list_foot">
+    <div class="list"><img src="./image/zoom.gif" alt=""><p>审核管理</p><span>&nu;</span></div>
+</div>
+<div class="list_about">
+    <div class="nav_top">
+        <span>您的位置：</span><span>审核管理 > 供应商管理</span>
+
+    </div>
+    <div class="head"></div>
+    <div class="Tb">
+        <h1 style="font-size:16px;color: #333333 ">供应商审核</h1>
+        <ul>
+            <li><span>农加网账号</span><input type="text">    </li>
+            <li> <span>供应商名称</span><input type="text">   </li>
+            <li> <span>供应商类型</span> <input type="text"> </li>
+            <li> <span>所在地</span> <input type="text"> </li>
+            <li><span>主营业务</span>   <input type="text">  </li>
+            <li><span> 联系人</span>  <input type="text"> </li>
+            <li><span>联系方式</span><input type="text"> </li>
+            <li><span>供应商图片</span><input type="text">   </li>
+            <li><span>审批结果</span> <input type="text"> </li>
+            <li><span>审批意见</span><input type="text"> </li>
+            <li>提交审核   返回</li>
+        </ul>
+    </div>
+</div>
+</div>
+
+
+</body>
+</html>

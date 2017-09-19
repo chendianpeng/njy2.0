@@ -1,0 +1,26 @@
+.content-r{
+    width: 942px;
+    height: 893px;
+    border:1px solid #ccc;
+    float: right;
+    padding: 25px 25px 0px 25px;
+}
+.content-r .xinxi{
+    font-size:16px;
+    color: #333;
+    padding-bottom: 12px;
+    border-bottom:1px solid #ccc;
+}
+.content-r .ts{
+    margin-top: 104px;
+    text-align: center;
+    color: #666;
+    font-size:14px;
+
+}
+.content-r .ts>a{
+    color: #2c99cd;
+}
+.content{
+    margin-bottom: 65px;
+}

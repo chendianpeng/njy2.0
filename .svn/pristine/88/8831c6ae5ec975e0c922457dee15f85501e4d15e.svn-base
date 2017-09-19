@@ -1,0 +1,28 @@
+/*卖家退款完成*/
+.tkwc{
+    color: #2ab53e;
+}
+.nav-ct .nav-ct-bottom .nav-ct-b-l .content-div .sctp>span{
+    vertical-align: top;
+    line-height: 60px;
+}
+
+.nav-ct .nav-ct-bottom .nav-ct-b-l .content-div .sctp .sctp-img {
+    display: inline-block;
+    width: 86px;
+    height: 86px;
+    margin-right: 10px;
+}
+
+.nav-ct .nav-ct-bottom .nav-ct-b-l .content-div .sctp .sctp-img img{
+    width: 100%;
+    height: 100%;
+
+}
+
+.nav-ct .nav-ct-bottom .nav-ct-b-l .content-div .tksq{
+   margin: 20px 0px 20px 0px;
+    font-size:14px;
+    color: #666666;
+}
+

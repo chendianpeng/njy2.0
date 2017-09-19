@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<!--卖家付款阶段-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit"><!-- 国产双核浏览器，启用极速模式 -->
+    <title>订单详情</title>
+    <link rel="stylesheet" href="../../../res/css/common.css">
+    <link rel="stylesheet" href="../../../res/css/su-pu/l-head.css">
+    <link rel="stylesheet" href="../../../res/css/su-pu/l-menu.css">
+    <link rel="stylesheet" href="../../../res/css/su-pu/l-nav.css">
+    <link rel="stylesheet" href="../../../res/css/su-pu/seller-fk.css.css">
+    <style>
+        body {
+            position: relative;
+            background-color: #ffffff;
+        }
+
+    </style>
+</head>
+<body>
+<!--头部-->
+<div class="l-header">
+    <div class="w1200">网站试运行</div>
+</div>
+<!--农家易-->
+<div class="l-menu">
+    <div class="w1200">
+        <div class="l-menu-left">
+            <img src="../../../res/img/su-pu/logo.png" alt="" onclick="location.href='../../../index.html'">
+            <span class="l-menu-left-1px"></span>
+            <span class="l-menu-top">订单详情</span>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

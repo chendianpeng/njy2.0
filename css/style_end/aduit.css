@@ -1,0 +1,116 @@
+
+.list{
+    margin-top:0px;
+}
+
+.list_main{
+    width:238px;
+    height: 64px;
+    background: #2d3751;
+    float: left;
+
+}
+.list dl{
+    margin-left: 10px;
+    margin-top: 22px;
+}
+.list dl dt img{
+    margin-left: 24px;
+}
+.list dd{
+    margin-left: 64px;
+    font-size: 14px;
+    color: #ffffff;
+}
+.nav{
+    margin-top: 0px;
+}
+.nav li{
+    background: #2aabd2;
+    width: 4px;
+    position: absolute;
+    float: left;
+    height: 100px;
+}
+
+
+.min_list li{
+    width:4px;
+    height: 20px;
+    float: left;
+    color: #2aabd2;
+}
+.Tb span{
+    font-size: 14px;
+    color: #666666;
+    display: inline-block;
+    width: 136px;
+    text-align: center;
+
+}
+.Tb li{
+    line-height: 56px;
+}
+.message li input{
+    width: 360px;
+    height: 30px;
+}
+.other{
+    margin-top: 23px;
+}
+#uploadImg{
+    font-size:12px;
+    overflow:hidden;
+    position:absolute
+}
+#read{
+
+    position:absolute;
+    z-index:100;
+    margin-left:-180px;
+    font-size:60px;opacity:0;
+    filter:alpha(opacity=0);
+    margin-top:-5px;
+
+}
+#uploadImg a{
+    display: block; /* 设置为块元素 */
+    width: 88px;
+    height: 88px;
+    line-height: 88px; /* 设置垂直居中 */
+    text-align: center;
+    border: 1px solid #cccccc;
+
+}
+#la input{
+   width: 14px;
+    height: 14px;
+}
+#la label span{
+    font-size: 14px;
+    color: #999999;
+}
+#op p{margin-top: -23px;
+}
+#op input{
+    width: 360px;
+    height: 88px;
+}
+#fin input{
+    background: #2ca8f4;
+    width: 140px;
+    height: 38px;
+    line-height: 38px;
+    border-radius: 3px;
+    font-size: 14px;
+    color: #ffffff;
+    text-align:center;
+}
+#fin .le{
+    margin-left: 136px;
+}
+#fin .ri{
+    margin-left: 20px;
+}
+
+

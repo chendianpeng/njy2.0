@@ -1,0 +1,592 @@
+angular.module("njy-directive", ["njy-model", "njy-util"])
+  .directive("njyPageheader", ["buyCar", "njyCookie", function(buyCar,
+    njyCookie) {
+    return {
+      scope: {}, // {} = isolate, true = child, false/undefined = no change
+      //require: "^getCurrentUser", // Array = multiple requires, ? = optional, ^ = check parent elements
+      restrict: "EA", // E = Element, A = Attribute, C = Class, M = Comment
+      // template: '<div class="header"></div>',
+      templateUrl: "./component/head.tpl.html",
+      replace: true,
+      transclude: true,
+      link: function($scope, iElm, iAttrs) {
+        $scope.isLogin = false;
+        $scope.goodsNum = 0;
+
+        $scope.token = njyCookie.getCookie("token");
+        $scope.backUrl = window.location.href;
+        /*
+        {
+          "content":{
+            "invalidDate":"2016-09-01 11:03:52",
+            "openDate":"2016-08-13 11:03:47",
+            "userEmail":"284765987@qq.com",
+            "userName":"abc12312",
+            "userPhone":"18454245634",
+            "userType":4
+          },
+          "errorMessage":"",
+          "sessionStatus":0,
+          "success":true
+        }
+        {
+          "content":"failed",
+          "errorMessage":"sessionId 失效",
+          "sessionStatus":-1,
+          "success":false
+        }
+        */
+        // getCurrentUser.getUser
+        //   .then(function(data) {
+        //     $scope.isLogin = !!data.success;
+        //     if ($scope.isLogin && typeof(data.content) == "object") {
+        //       $scope.userName = data.content.userName;
+        //     } else {
+        //       $scope.userName = "--";
+        //     }
+        //   }, function() {
+        //     $scope.userName = "--";
+        //   })
+        // .then(function() {
+        $scope.isLogin = true;
+        $scope.userName = "KanT1231234534";
+        var list = [{
+          "amount": 28,
+          "goodsImage": "./img/commodity.jpg",
+          "goodsName": "广东正宗清远麻鸡 180天养殖 肉质鲜嫩 肉质鲜嫩",
+          "goondsId": 103,
+          "initialVolume1": 31,
+          "initialVolume2": 200,
+          "initialVolume3": 300,
+          "isPublish": 1,
+          "packSpec": "元/斤",
+          "price1": 8,
+          "price2": 2,
+          "price3": 3,
+          "supplierId": 238,
+          "supplierName": ""
+        }, {
+          "amount": 29,
+          "goodsImage": "./img/commodity.jpg",
+          "goodsName": "小白菜5",
+          "goondsId": 102,
+          "initialVolume1": 100,
+          "initialVolume2": 200,
+          "initialVolume3": 300,
+          "isPublish": 1,
+          "packSpec": "元/斤",
+          "price1": 7,
+          "price2": 2,
+          "price3": 3,
+          "supplierId": 238,
+          "supplierName": ""
+        }, {
+          "amount": 29,
+          "goodsImage": "./img/commodity.jpg",
+          "goodsName": "小白菜4",
+          "goondsId": 102,
+          "initialVolume1": 100,
+          "initialVolume2": 200,
+          "initialVolume3": 300,
+          "isPublish": 1,
+          "packSpec": "元/斤",
+          "price1": 7,
+          "price2": 2,
+          "price3": 3,
+          "supplierId": 238,
+          "supplierName": ""
+        }, {
+          "amount": 29,
+          "goodsImage": "./img/commodity.jpg",
+          "goodsName": "小白菜3",
+          "goondsId": 102,
+          "initialVolume1": 100,
+          "initialVolume2": 200,
+          "initialVolume3": 300,
+          "isPublish": 1,
+          "packSpec": "元/斤",
+          "price1": 7,
+          "price2": 2,
+          "price3": 3,
+          "supplierId": 238,
+          "supplierName": ""
+        }, {
+          "amount": 29,
+          "goodsImage": "./img/commodity.jpg",
+          "goodsName": "小白菜2",
+          "goondsId": 102,
+          "initialVolume1": 100,
+          "initialVolume2": 200,
+          "initialVolume3": 300,
+          "isPublish": 1,
+          "packSpec": "元/斤",
+          "price1": 7,
+          "price2": 2,
+          "price3": 3,
+          "supplierId": 238,
+          "supplierName": ""
+        }];
+        jq.each(list, function(i, li) {
+          li.price = li.price1;
+          if (li.amount >= li.initialVolume3) {
+            li.price = li.price3;
+          } else if (li.amount >= li.initialVolume2) {
+            li.price = li.price2;
+          }
+        });
+        $scope.goodsList = list;
+        $scope.goodsNum = $scope.goodsList.length;
+
+        // });
+        $scope.delCarGoods = function(index) {
+          $scope.goodsList.splice(index, 1);
+          $scope.goodsNum = $scope.goodsList.length;
+        };
+        $scope.openGoodsInfo = function(id) {
+          console.log("open", id);
+        };
+        jq('.header').on('click', '.loginBtn', function() {
+          postToLogin();
+        });
+        jq('.header').on('mouseenter', '.njy-nav-item', function() {
+          jq(this).addClass('hoverNjy');
+          jq(this).next('.njyList').show();
+        });
+        jq('.header').on('mouseleave', '.njy-nav-item', function() {
+          jq(this).removeClass('hoverNjy');
+          jq(this).next('.njyList').hide();
+        });
+        jq('.header').on('mouseenter', '.njyList', function() {
+          jq(this).prev().addClass('hoverNjy');
+          //jq('#njy').css({'background':'#fff','border':'1px solid #eee','border-bottom':'none'});
+          jq(this).show();
+        });
+        jq('.header').on('mouseleave', '.njyList', function() {
+          jq(this).prev().removeClass('hoverNjy');
+          jq(this).hide();
+        });
+
+        jq('.header').on('click', '#logOut', function() {
+          jq.ajax({
+            type: "POST",
+            url: NJYCON.hostUrl + "/api/sys/login/logout",
+            crossDomain: true,
+            xhrFields: {
+              withCredentials: true
+            },
+            data: JSON.stringify({
+              cookie: njyCookie.getCookie('token')
+            }),
+            beforeSend: function(result) {
+              result.setRequestHeader('sessionId', njyCookie.getCookie(
+                'token'));
+            },
+            success: function(result) {
+              document.getElementById('quitForm').submit();
+            },
+            error: function(result) {
+
+            },
+          });
+        });
+      }
+    };
+  }])
+  /**
+   * 页脚
+   */
+  .directive('njyPagefoot', function() {
+    // Runs during compile
+    return {
+      restrict: 'EA',
+      templateUrl: './component/foot.tpl.html',
+      replace: true
+    };
+  })
+  /**
+   * 页面logo层。
+   * 用法：
+   * 没有属性值，只有一个logo；
+   * data-title为logo图标旁的标题文字；
+   * data-right可以的值为：search-搜索框，backToIndex-返回首页图标，step-结算页中的步骤
+   * e.g. <div njy-pagelogo data-title="农加易管理" data-right="search"></div>
+   */
+  .directive('njyPagelogo', function() {
+    // Runs during compile
+    return {
+      scope: {
+        "right": "@",
+        "title": "@"
+      }, // {} = isolate, true = child, false/undefined = no change
+      //controller: function($scope, $element, $attrs, $transclude) {},
+      // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
+      restrict: 'EA', // E = Element, A = Attribute, C = Class, M = Comment
+      // template: '',
+      templateUrl: './component/logo.tpl.html',
+      replace: true,
+      transclude: true,
+      // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
+      link: function($scope, iElm, iAttrs, controller) {
+        $scope.showSeach = false;
+        $scope.backToIndex = false;
+
+
+        if (iAttrs.right === "search") {
+          $scope.showSeach = true;
+        } else if (iAttrs.right === "backToIndex") {
+          $scope.backToIndex = true;
+        }
+
+        jq('input').placeholder();
+      }
+    };
+  })
+  /**
+   * 交易步骤指令，可以无参数，默认显示第一步
+   * data-step:当前步骤
+   * data-times:步骤的时间，用“,”隔开
+   * data-err:退款中
+   * e.g. <div njy-step data-step="4" data-times="2017-9-10 11:12:13,2017-9-10 11:12:20" data-err="退款中"></div>
+   */
+  .directive('njyStep', function() {
+    // Runs during compile
+    return {
+      restrict: 'EA',
+      templateUrl: './component/step.tpl.html',
+      replace: true,
+      link: function($scope, iElm, iAttrs, controller) {
+        // debugger;
+        var times = iAttrs.times,
+          i = 0,
+          steps = [{
+            "name": "提交订单",
+            time: "",
+            tips: ""
+          }, {
+            "name": "确认订单",
+            time: "",
+            tips: ""
+          }, {
+            "name": "付款",
+            time: "",
+            tips: ""
+          }, {
+            "name": "发货",
+            time: "",
+            tips: $scope.err
+          }, {
+            "name": "收货",
+            time: "",
+            tips: ""
+          }, {
+            "name": "完成",
+            time: "",
+            tips: ""
+          }];
+        if (!iAttrs.step || !/^\d+/.test(iAttrs.step) || iAttrs.step < 1) {
+          iAttrs.step = 1;
+        } else if (iAttrs.step > steps.length) {
+          iAttrs.step = steps.length;
+        }
+        $scope.step = iAttrs.step - 1;
+
+        if (iAttrs.times) {
+          times = times.split(",");
+          for (; i < times.length; i++) {
+            steps[i].time = times[i];
+          }
+        }
+        $scope.steps = steps;
+      }
+    };
+  })
+  /**
+   * 省市县级联选择指令
+   * data-province:省份
+   * data-city:市
+   * data-county:县
+   * area-result:用户改变地址后的结果，此值是反馈给外层scope的，故外层controller须声明变量areaResult
+   * e.g.
+   * <div njy-addrarea area-result="areaResult"></div>
+   * <div njy-addrarea data-province="{{province}}" data-city="{{city}}" data-county="{{county}}" area-result="areaResult"></div>
+   */
+  .directive('njyAddrarea', ["addrArea", function(addrArea) {
+    return {
+      restrict: "EA",
+      templateUrl: "./component/addr.tpl.html",
+      replace: true,
+      /*
+      @：单向绑定，外部scope能够影响内部scope，但反过来不成立
+      =：双向绑定，外部scope和内部scope的model能够相互改变
+      <!--注意这里，因为是双向绑定，所以元素标签内就不要“{{}}”这个符号-->
+      <my-directive my-text="input"></my-directive>
+      &：把内部scope的函数的返回值和外部scope的任何属性绑定起来
+      <!--注意这里，函数名字也要用 连字符命名法-->
+      <my-directive get-my-text="input"></my-directive>
+      */
+      scope: {
+        "nProvince": "@province",
+        "nCity": "@city",
+        "nCounty": "@county",
+        "result": "=areaResult"
+      },
+      link: function($scope, iElm, iAttrs) {
+        $scope.area = {
+          provinces: [],
+          cities: [],
+          counties: []
+        };
+        $scope.result = {};
+        $scope.nProvince = $scope.nProvince || "省";
+        $scope.nCity = $scope.nCity || "市";
+        $scope.nCounty = $scope.nCounty || "县";
+        var getProvinces = function(id) {
+          addrArea.findByParentId(id)
+            .then(function(_data) {
+              _data = _data.content;
+              $scope.area.provinces = _data;
+              if ($scope.nProvince == "省") {
+                $scope.nProvince = undefined;
+                $scope.nCity = undefined;
+                $scope.nCounty = undefined;
+              } else {
+                $scope.changeProvince($scope.nProvince);
+              }
+            }, function(errCode, errMsg) {
+              $scope.area.provinces = [];
+            });
+        };
+        var getCities = function(id) {
+          addrArea.findByParentId(id)
+            .then(function(_data) {
+              _data = _data.content;
+              $scope.area.cities = _data;
+              $scope.nCity = _data[0].areaName;
+              $scope.result.city = _data[0];
+              getCounties(_data[0].id);
+            }, function(errCode, errMsg) {
+              $scope.area.cities = [];
+            });
+        };
+        var getCounties = function(id) {
+          addrArea.findByParentId(id)
+            .then(function(_data) {
+              _data = _data.content;
+              $scope.area.counties = _data;
+              var name = $scope.nCounty;
+              $scope.nCounty = _data[0].areaName;
+              $scope.result.county = _data[0];
+              angular.forEach(_data, function(d) {
+                if (name == d.areaName) {
+                  $scope.nCounty = name;
+                  $scope.result.county = d;
+                }
+              });
+            }, function(errCode, errMsg) {
+              $scope.area.counties = [];
+            });
+        };
+
+        getProvinces(0); //初始化省份
+
+        $scope.changeProvince = function(_name) {
+          // $scope.nProvince = _name;
+          angular.forEach($scope.area.provinces, function(data) {
+            if (_name == data.areaName) {
+              $scope.result.province = data;
+              getCities(data.id);
+              return false;
+            }
+          });
+        };
+        $scope.changeCity = function(_name) {
+          angular.forEach($scope.area.cities, function(data) {
+            if (_name == data.areaName) {
+              $scope.result.city = data;
+              getCounties(data.id);
+              return false;
+            }
+          });
+        };
+        $scope.changeCounty = function(_name) {
+          angular.forEach($scope.area.counties, function(data) {
+            if (_name == data.areaName) {
+              $scope.result.county = data;
+              return false;
+            }
+          });
+        };
+      }
+    };
+  }])
+  /**
+   * 分页指令，参数不能为空
+   * current-page:当前页
+   * total-page:总页数
+   * get-list:更新列表的函数方法，函数可改，须带上一个page参数（表示选中页）
+   * e.g.
+   * <div njy-pager current-page="1" total-page="1" get-list="getListByPage(page)"></div>
+   */
+  .directive("njyPager", ["njyAlert", function(njyAlert) {
+    return {
+      restrict: "EA",
+      templateUrl: "./component/pager.tpl.html",
+      replace: true,
+      scope: {
+        total: "@totalPage",
+        currentPage: "@",
+        getList: "&"
+      },
+      link: function($scope, iElm, iAttrs) {
+        $scope.items = [];
+        $scope.total = $scope.total || 1;
+        $scope.currentPage = $scope.currentPage || 1;
+        $scope.total = parseInt($scope.total);
+        $scope.currentPage = parseInt($scope.currentPage);
+        $scope.pageNum = 1;
+        if ($scope.currentPage > $scope.total) {
+          throw new Error("当前页数不能大于总页数");
+        }
+        //组建页码item
+        var createItems = function() {
+          var preI = 5,
+            nextI = 3,
+            i = 0,
+            items = [],
+            c = $scope.currentPage,
+            t = $scope.total;
+          if (t < 6) {
+            for (i = 1; i <= t; i++) {
+              items.push({
+                name: i,
+                click: "num"
+              });
+            }
+            $scope.items = items;
+            return;
+          }
+
+          if (c < 5) {
+            for (i = 1; i < 6; i++) {
+              items.push({
+                name: i,
+                click: "num"
+              });
+            }
+            items.push({
+              name: "...",
+              click: "dot"
+            });
+            $scope.items = items;
+            return;
+          }
+
+          //组建当时页的后3个
+          items.push({
+            name: c,
+            click: "num"
+          });
+          for (i = c + 1; i <= t; i++) {
+            if (--nextI > -1) {
+              items.push({
+                name: i,
+                click: "num"
+              });
+              if (nextI == 0 && t > i) {
+                items.splice(items.length - 1, 1, {
+                  name: "...",
+                  click: "dot"
+                });
+              }
+            } else {
+              break;
+            }
+          }
+          //组建当时页的前5个
+          for (i = c - 1; i > 0; i--) {
+            if (--preI > -1) {
+              items.splice(0, 0, {
+                name: i,
+                click: "num"
+              });
+              if (preI == 2) {
+                if (i > 3) {
+                  items.splice(0, 1, {
+                    name: 1,
+                    click: "num"
+                  }, {
+                    name: 2,
+                    click: "num"
+                  }, {
+                    name: "...",
+                    click: "dot"
+                  });
+                  break;
+                }
+              }
+            } else {
+              break;
+            }
+          }
+          $scope.items = items;
+        };
+        createItems();
+        $scope.itemClick = function(e) {
+          var target = e.target || e.srcElement;
+          var itemType = target.getAttribute("item-click");
+          $scope.currentPage=+$scope.currentPage;
+          $scope.total=+$scope.total;
+          if (itemType === "prev" && $scope.currentPage > 1) {
+            $scope.currentPage--;
+          } else if (itemType === "next" && $scope.currentPage < $scope.total) {
+            $scope.currentPage++;
+          } else if (itemType === "num") {
+            $scope.currentPage = parseInt(target.innerHTML);
+          } else if (itemType === "enter") {
+            if ($scope.pageNum > 0 && $scope.pageNum <= $scope.total) {
+              $scope.currentPage = $scope.pageNum;
+            } else {
+              njyAlert.tips("页码输入不合法，输入的数必须大于0,小于等于" + $scope.total);
+            }
+          }
+
+          if (itemType) {
+            $scope.getList({
+              page: $scope.currentPage
+            });
+            createItems();
+          }
+        };
+      }
+    };
+  }])
+  /**
+   * placeholder兼容IE8组件
+   * e.g.
+   * <input type="text" placeholder="输入想搜索的商品">
+   */
+  .directive("placeholder", [function(njyAlert) {
+    return {
+      restrict: "A",
+      link: function($scope, iElm, iAttrs) {
+        var el = angular.element(iElm);
+        if (!('placeholder' in document.createElement('input'))) {
+          var tip = el.attr("placeholder");
+          el.addClass("placeholder");
+          setTimeout(function() {
+            el.val(tip);
+          }, 0);
+          el.on("focus", function() {
+            if (el.val() == tip) {
+              el.val("").removeClass("placeholder");
+            }
+          });
+          el.on("blur", function() {
+            if (!el.val()) {
+              el.val(tip).addClass("placeholder");
+            }
+          });
+        }
+      }
+    };
+  }])

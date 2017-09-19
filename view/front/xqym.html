@@ -1,0 +1,217 @@
+<!-- 页头-start -->
+<div njy-pageheader></div>
+<!-- 页头-end -->
+<!-- logo层，右侧可以是 search-搜索框，backToIndex-返回首页图标，step-结算页中的步骤 -->
+<div njy-pagelogo data-title="农加易管理" data-right="{{status?'search':'backToIndex'}}"></div>
+<!-- logo层-end -->
+<div >
+    <!-- header begin -->
+    <div ng-show="publish" class="hBot">
+        <div ng-show="status">
+            <ul>
+                <li><a href="">首页&nbsp</a>></li>
+                <li><a href="">&nbsp供应商品列表页&nbsp</a>></li>
+                <li>&nbsp商品详情</li>
+            </ul>
+        </div>
+        <a ng-show="!status" href="">< 返回商品管理</a>
+    </div>
+    <div ng-show="publish" class="ng-cloak">
+        <div class="topDiv">
+            <!--左侧图片部分-->
+            <div class="leftDiv">
+                <div id="bigImg" class="bigImg">
+                    <!--<img src="../../../res/img/bigImg.png" />
+                    <img src="../../../res/img/sm_tom01.png" />
+                    <img src="../../../res/img/sm_tom02.png" />
+                    <img src="../../../res/img/sm_tom03.png" />
+                    <img src="../../../res/img/sm_tom04.png" />-->
+                    <img ng-class="{'dpn':$index>0}" class="bImg" ng-src="{{img.originImagePath}}" ng-repeat="img in imgs">
+                </div>
+                <div class="sliDiv">
+                    <div class="lfBtn" id="lfBtn" ng-click="slideLeft()">
+                        <img src="img/left-btn.png">
+                    </div>
+                    <ul id="sliUl">
+                        <li ng-repeat="img in imgs track by $index" ng-class="{'sliLi':$first,'dpn':$index>4}" ng-mouseover="imgChg($index)"><img class="sImg" ng-src="{{img.compressImagePath}}"></li>
+                        <!--<li><img src="{{list[0].compressImagePath}}"></li>-->
+                    </ul>
+                    <div class="rgBtn" id="rgBtn" ng-click="slideRight()">
+                        <img src="img/right-btn.png">
+                    </div>
+                </div>
+            </div>
+            <!--右侧信息部分-->
+            <div class="rightDiv">
+                <p class="titleP">{{content.title}}</p>
+                <div class="priDiv">
+                    <p>
+                        <span class="grySpan">价格：</span>
+                        <span class="orgSpan"><span class="smSpan"><span>￥</span>{{content.price1}}</span>/{{content.unit.unit}}</span>
+                        <span class="orgSpan" id="sPri"><span class="smSpan"><span>￥</span>{{content.price2}}</span>/{{content.unit.unit}}</span>
+                        <span class="orgSpan" id="tPri"><span class="smSpan"><span>￥</span>{{content.price3}}</span>/{{content.unit.unit}}</span>
+                    </p>
+                    <p>
+                        <span class="grySpan">起批量：</span>
+                        <span class="qpSpan">{{content.initialVolume1}}{{content.unit.unit}}以上<!--100斤以上--></span>
+                        <span class="qpSpan" id="sInit">{{content.initialVolume2}}{{content.unit.unit}}以上<!--200斤以上--></span>
+                        <span class="qpSpan" id="tInit">{{content.initialVolume3}}{{content.unit.unit}}以上<!--300斤以上--></span>
+                    </p>
+                </div>
+                <div class="nwDiv">
+                    <p>
+                        <span class="detSpan">供应时间：</span>
+                        <span class="font-sm"><!--2017.06.06~2017.10.10-->{{inMarket | point_date}}-{{outMarket | point_date}}</span>
+                    </p>
+                    <p>
+                        <span class="detSpan">发货地：</span>
+                        <span class="font-sm"><!--山东省日照市五莲县-->{{address}}</span>
+                    </p>
+                    <div>
+                        <span class="detSpan wuliuSpan">支持物流：</span>
+                        <div class="wig">
+                            <p ng-repeat="Logistics in supportLogistics" class="font-sm"><i></i><span class="mrglf-6"><!--协助找车-->{{Logistics}}</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="fotDv">
+                    <div ng-show="status">
+                        <span class="amount"><span ng-class="{'btn1':!canless}" class="btn" ng-click="canless?reduce():''">-</span><input ng-blur="byHand()" ng-model="content.amount" type="text"><span class="btn" ng-click="add()">+</span>
+                        </span>
+                        <span class="unit">斤</span>
+                        <span class="rt">商品总价：<b>{{content.xj}} </b>元</span>
+                        <p ng-show="less">最小批量{{content.initialVolume1}}{{content.unit.unit}}</p>
+                    </div>
+                    <div ng-show="!status" style="height: 20px;width: 500px;"></div>
+
+                    <img ng-show="status" ng-click="buyNow()" src="img/images/buyNow.png" alt="">
+                    <img ng-show="status" ng-click="addToCart()" src="img/images/addCart.png" alt="">
+                    <img ng-show="!status" src="img/images/buyNow1.png" alt="">
+                    <img ng-show="!status" src="img/images/addCart1.png" alt="">
+                    <a ng-click="linkUs()" id="linkAp" href="">
+                        <i></i>
+                        <span>联系我们</span>
+                    </a>
+                    <span class="howlong">发布于:  {{fbTime}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="main">
+            <div class="gys">
+                <p class="apr">供应商</p>
+                <div class="gysName">
+                    <img ng-src="{{supplier.supplierImg}}" />
+                    <span><!--梅州市燕岭县银河合作社-->{{supplier.supplierName}}</span>
+                </div>
+                <hr align="center">
+                <div class="gysInfo">
+                    <p>
+                        <span class="firSpan">所在地:</span>
+                        <span class="supSpan"><!--山东省日照市五莲县-->{{supplier.province}}{{supplier.city}}{{supplier.county}}</span>
+                    </p>
+                    <p>
+                        <span class="firSpan">类型:</span>
+                        <span class="supSpan"><!--合作社-->{{supplier.supplierType}}</span>
+                    </p>
+                    <p>
+                        <span class="firSpan">主营:</span>
+                        <span class="supSpan ovfHid"><!--玉米、西红柿-->{{supplier.mainBusiness}}</span>
+                    </p>
+                    <p>
+                        <span class="firSpan midMag">联系人:</span>
+                        <span class="supSpan"><!--李银河-->{{supplier.contact}}</span>
+                    </p>
+                    <a class="fwzy" href="../supplier_index.html?id={{id}}" target="_blank"><span>访问店铺</span><i></i></a>
+                </div>
+            </div>
+            <div class="hpms">
+                <p class="firP"><span>商品描述</span></p>
+                <div class="hpggDiv">
+                    <p>商品规格</p>
+                    <ul>
+                        <li><span class="hsColor">产地：</span>{{content.originPlace}}</li>
+                        <li><span class="hsColor">品牌：</span>{{content.brand}}</li>
+                        <li><span class="hsColor">包装：</span>{{content.packWay}}</li>
+                    </ul>
+                </div>
+                <hr>
+                <div class="hpmsDiv">
+                    <span>商品描述</span>
+                    <p class="maosuP">{{content.descr}}</p>
+                    <img class="bbImg" ng-src="{{detailImg.originImagePath}}" ng-repeat="detailImg in detailImgs">
+                </div>
+            </div>
+        </div>
+        <div ng-show="showPhone" class="box" id="box"></div>
+
+        <div ng-show="showPhone" class="winDiv" id="winDiv">
+            <div class="jlDiv">
+                <h3>潘经理</h3>
+                <ul>
+                    <li><span>手机</span>
+                        <p>+86 13535076822</p>
+                    </li>
+                    <li><span>邮箱</span>
+                        <p>panjiajing@sengnon.cn</p>
+                    </li>
+                    <li><span>微信</span>
+                        <p>qq390603303</p>
+                    </li>
+                    <li><span>QQ</span>
+                        <p>390603303</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="jlDiv">
+                <h3>吴经理</h3>
+                <ul>
+                    <li><span>手机</span>
+                        <p>+86 18620096989</p>
+                    </li>
+                    <li><span>邮箱</span>
+                        <p>wuchunlong@sengnon.cn</p>
+                    </li>
+                    <li><span>微信</span>
+                        <p>18620096989</p>
+                    </li>
+                    <li><span>QQ</span>
+                        <p>523888456</p>
+                    </li>
+                </ul>
+            </div>
+            <a ng-click="closeBtn()" class="closeBtn" id="closeBtn">关闭</a>
+        </div>
+
+        <div ng-show="sucToCart" class="box1" id="box1"></div>
+        <div class="succCart" ng-show="sucToCart">
+            <div class="succCart-suc">
+                <i></i><p>商品已成功添加到购物车!</p>
+            </div>
+            <div class="succCart-md">
+                <img width="60" height="60" ng-src="{{imgs[0].compressImagePath}}" alt="">
+                <span>{{descr}}</span>
+            </div>
+            <div class="succCart-bot">
+                数量：<span>{{content.amount}}</span>
+                商品总价：<span>{{content.xj|number:2}}</span>
+                <input ui-sref="shopcart" class="toCart" value="去购物车结算" type="button">
+                <input ng-click="toShop()" class="toShop" value="继续购物" type="button">
+            </div>
+        </div>
+    </div>
+    <div ng-show="!publish" class="is-publish">
+        <div class="pub-content">
+            <img src="img/images/unhappy.png" alt="">
+            <div>
+                <h2>很抱歉，您查看的商品不存在，可能已下架。</h2>
+                <p class="mar-t">您可以：</p>
+                <p>1. 该宝贝可能已经下架，您可以进入供应商的<a href="">店铺主页</a>查找类似商品。</p>
+                <p>2. 回到<a href="">商品列表页</a>搜索框重新输入关键词搜索。</p>
+            </div>
+        </div>
+    </div>
+    <!-- footer begin -->
+</div>
+
+
+

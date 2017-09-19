@@ -1,0 +1,14 @@
+.l-nav_list{
+    margin-top:15px;
+    margin-bottom:10px;
+}
+.l-nav_list a{
+    color:#666666;
+    line-height:35px;
+}
+.l-nav_list .checked{
+    color:#2c99cd;
+}
+.l-nav_list a:hover{
+    color:#2c99cd;
+}

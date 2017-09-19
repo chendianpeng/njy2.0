@@ -1,0 +1,91 @@
+/*内容div*/
+.main {
+    background-color:#F5F5F5;
+}
+.nrDiv {
+    width:1200px;
+    height:500px;
+    margin:0 auto;
+}
+/*左侧部分*/
+.wjP {
+    width:185px;
+    height:60px;
+    line-height:60px;
+    background-color:#EFEFEF;
+    color:#5E5E5E;
+    font-weight: bold;
+    border:1px solid #ddd;
+    padding-left:20px;
+}
+.ltDiv {
+    float:left;
+}
+.glDiv {
+    width:204px;
+    height:145px;
+    background-color:#fff;
+    border-left:3px solid #2C99CD;
+}
+.glA {
+    display:block;
+    width:204px;
+    height:50px;
+    line-height:50px;
+    text-decoration: none;
+    color:#333;
+    border-bottom:1px solid #ddd;
+}
+.glDiv ul {
+    margin-top:10px;
+}
+.glDiv ul li {
+    width:204px;
+    height:30px;
+    line-height:30px;
+    text-align:center;
+    font-size:14px;
+}
+.glDiv ul li a:hover {
+    cursor:pointer;
+    color:#589BF6;
+}
+.fbDiv {
+    width:900px;
+    height:480px;
+    background-color:#fff;
+    float:left;
+}
+.titP {
+    margin-left:30px;
+    height:60px;
+    line-height:60px;
+}
+.fbDiv div {
+    width:880px;
+    margin:0 auto;
+    border-top:1px solid #ddd;
+    text-align:center;
+}
+.fbDiv div p{
+    margin-top:100px;
+}
+.fbDiv div p a {
+    text-decoration: none;
+    color:#589BF6;
+}
+
+.M_logo{
+    background: url("../img/m_logo.png") no-repeat;
+    display:inline-block;
+    vertical-align: middle ;
+    margin-right:12px;
+    width:21px;
+    height:20px;
+    margin-left:33px;
+}
+.M_text{
+    vertical-align:middle;
+    color:#333;
+    font-size:16px;
+}

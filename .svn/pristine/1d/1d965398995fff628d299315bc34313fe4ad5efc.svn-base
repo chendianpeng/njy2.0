@@ -1,0 +1,51 @@
+/*
+卖家付款订单阶段*/
+body {
+    background-color: #ffffff;
+    position: relative;
+}
+/*商品总金额*/
+.order-mian-spxx > .spxx-list .zje {
+    text-align: right;
+    padding: 20px 0px 14px 0px;
+    font-size:12px;
+}
+.order-mian-spxx > .spxx-list .zje>strong{
+    color: #333;
+}
+.order-mian-spxx > .spxx-list .zje>strong.zjecur{
+    color: #999999;
+    text-decoration:line-through
+}
+/*供应商改价*/
+.order-mian-spxx > .spxx-list .gj {
+    text-align: right;
+    padding: 0px 0px 14px 0px;
+    font-size:12px;
+    color: #ff7800;
+}
+.order-mian-spxx > .spxx-list .gj>strong{
+    color: #333;
+}
+/*运费*/
+.order-mian-spxx > .spxx-list .yf {
+    text-align: right;
+    padding: 0px 0px 19px 0px;
+    font-size:12px;
+}
+.order-mian-spxx > .spxx-list .yf>strong{
+    color: #333;
+}
+/*应付*/
+.order-mian-spxx > .spxx-list .yf2{
+    text-align: right;
+    padding: 0px 0px 20px 0px;
+    font-size:12px;
+}
+.order-mian-spxx > .spxx-list .yf2>strong{
+    font-size:14px;
+    color: #ff0000;
+}
+.order-mian-spxx > .spxx-list .yf2>i{
+    font-size:16px;
+}

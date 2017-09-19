@@ -1,0 +1,97 @@
+<!--采购审核-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<!--[if IE 8]>         <html xmlns:ng="http://angularjs.org" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html xmlns:ng="http://angularjs.org" class="no-js">
+<!--<![endif]-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit"><!-- 国产双核浏览器，启用极速模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <base href="/">
+    <title>采购审核</title>
+    <link rel="stylesheet" href="./js/My97DatePicker/skin/WdatePicker.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/su-pu/l-nav.css">
+    <link rel="stylesheet" href="./css/su-pu/caigou.css">
+    <link rel="stylesheet" href="./css/information/caigou-sh.css">
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body ng-controller="my-app" ng-app="app">
+<!--头部-->
+<div njy-pageheader></div>
+<!--农家易-->
+<div njy-pagelogo data-title="农加易管理"  data-right="backToIndex"></div>
+<!--主要内容-->
+<div class="w1200 l-main">
+    <div class="l-nav_list">
+        <span><a href="../index.html">首页</a></span>&nbsp;&#62;
+        <span><a href="../manager/m_commodity.html">农加易管理</a></span>&nbsp;&#62;
+        <span><a href="#">采购商信息</a></span>
+    </div>
+    <div class="content">
+        <div class="content-l">
+            <div class="p18px njygl">
+                农家易管理
+            </div>
+            <ul class="gy">
+                <p class="p50px gygl"><img src="./img/su-pu/m_logo.png" alt="" class="imgs">供应管理</p>
+                <li class="p50px"><a href="#">商品管理</a></li>
+                <li class="p50px"><a href="#">供应订单</a></li>
+                <li class="p50px"><a href="#">供应商信息</a></li>
+            </ul>
+            <ul class="cggl">
+                <p class="p50px gygl"><img src="./img/su-pu/c_icon_c.png" alt="" class="imgs">采购管理</p>
+                <li class="p50px"><a href="#" >采购订单</a></li>
+                <li class="p50px"><a href="#" class="cura">采购商信息</a></li>
+            </ul>
+        </div>
+        <div class="content-r">
+            <p class="xinxi">采购商信息 <span class="tg">审核通过</span><span class="btg">审核不通过</span></p>
+            <p class="mt20 zh"><label for="username">农家网账号</label><input type="text" id="username"></p>
+            <p class="mt20 mc"><label for="name">采购商名称</label><input type="text" id="name"></p>
+            <p class="mt20 lx"><label for="lx">采购商类型</label><select name="lx" id="lx">
+                <option value="">合作社</option>
+            </select>
+            </p>
+            <p class="mt20 szd"><label for="szd">所在地</label><input type="text" id="szd"></p>
+            <p class="mt20 yw"><label for="yw">主营业务</label><input type="text" id="yw"></p>
+            <p class="mt20 lxr"><label for="lxr">联系人</label><input type="text" id="lxr"></p>
+            <p class="mt20 tel"><label for="tel">联系方式</label><input type="text" id="tel"></p>
+            <p class="mt20 gysimg"><label>采购商图片</label>
+                <img src="../../../img/commodity.jpg" alt="">
+            </p>
+            <p class="mt20 shyj"><label for="shyj">审核意见</label><input type="text" id="shyj"></p>
+            <p class="mt20 bj"><label></label><span>编辑</span></p>
+
+        </div>
+    </div>
+</div>
+<!--尾部-->
+<div njy-pagefoot></div>
+
+
+<!--js-->
+<script src="./js/My97DatePicker/WdatePicker.js"></script>
+<script src="./js/vendor/jquery-1.8.2.min.js"></script>
+<script src="./js/vendor/jquery.placeholder.js"></script>
+<script src="./js/lib/angular-1.2.32/angular.js"></script>
+<script src="./js/vendor/modernizr-2.6.2.min.js"></script>
+<script src="./js/util.js"></script>
+<script src="./js/config.js"></script>
+<script src="./js/directive/directives.js"></script>
+<script src="./js/model/model.js"></script>
+<script src="./js/index.js"></script>
+<script src="./js/information/caigou-ts.js"></script>
+
+
+</body>
+</html>

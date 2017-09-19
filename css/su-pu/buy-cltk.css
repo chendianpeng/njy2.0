@@ -1,0 +1,47 @@
+/*买家处理退款*/
+body {
+    background-color: #ffffff;
+    position: relative;
+}
+
+/*撤销退款*/
+.nav-ct-bottom .nav-ct-b-l .p-tk>a{
+    color: #0984C0;
+    margin: 0px 5px;
+}
+.nav-ct-bottom .nav-ct-b-l .p-tk>i{
+    color: #BBBBBB;
+}
+/*撤销退款弹窗*/
+.cxAlert{
+    position:absolute ;
+    background:rgba(0,0,0,.2);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#33000000,endColorstr=#33000000);
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+}
+.cxAlert .cx-div{
+    width: 300px;
+    height: 175px;
+    border:1px solid #cccccc;
+    background-color:#fff;
+    text-align: center;
+    line-height: 135px;
+    position: absolute;
+    top:30%;
+    left: 43%;
+}
+.cxAlert .cx-div>button{
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+}
+.cxAlert .cx-div>.cx-qd{
+    left:28%;
+}
+.cxAlert .cx-div>.cx-fh{
+    left:58%;
+}

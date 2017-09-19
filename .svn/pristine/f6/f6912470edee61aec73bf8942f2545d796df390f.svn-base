@@ -1,0 +1,17 @@
+var app = angular.module('DemoApp',[njy-pager]);
+
+app.controller('DemoController',['$scope' ,'BusinessService',function ($scope,BusinessService) {
+
+    var GetAllEmployee = function () {
+
+        var posData = {
+
+        }
+
+
+    }
+
+
+
+
+}])

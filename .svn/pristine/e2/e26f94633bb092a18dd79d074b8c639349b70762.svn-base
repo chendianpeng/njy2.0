@@ -1,0 +1,81 @@
+/*卖家收货*/
+body {
+    background-color: #ffffff;
+    position: relative;
+}
+/*配送信息*/
+.order-main .order-mian-gy {
+    padding-top: 20px;
+    border-bottom: 1px solid #E2E2E2;
+    font-size: 12px;
+    color: #333;
+    padding-bottom: 20px;
+}
+
+.order-main .order-mian-gy .gy {
+    font-size:14px;
+    margin-bottom: 20px;
+}
+.order-main .order-mian-gy>.gy-l{
+    display: inline-block;
+    padding-right: 55px;
+    border-right:1px solid #ccc;
+}
+.order-main .order-mian-gy>.gy-l.brn{
+    border-right: none;
+}
+.p55{
+    padding-left: 55px;
+}
+.order-main .order-mian-gy>.gy-l>p{
+    padding-bottom: 13px;
+}
+.order-main .order-mian-gy>.gy-l>p.p0{
+    padding-bottom: 0px;
+}
+.order-main .order-mian-gy>.gy-l>p>i{
+    display: inline-block;
+    width: 67px;
+}
+.order-main .order-mian-gy>.gy-l>p>i.w88{
+    width: 88px;
+}
+/*发货凭证*/
+.order-mian-pz{
+    padding: 20px 0px 20px 0px;
+    border-bottom: 1px solid #ccc;
+}
+.order-mian-pz .pz{
+    font-size:14px;
+    margin-bottom: 20px;
+}
+.order-mian-pz .pz-img{
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+}
+.order-mian-pz .pz-img>img{
+    width: 100%;
+    height: 100%;
+}
+/*运费*/
+.order-mian-spxx > .spxx-list .yf {
+    text-align: right;
+    padding: 0px 0px 19px 0px;
+    font-size:12px;
+}
+/*已付*/
+.order-mian-spxx > .spxx-list .yf2{
+    text-align: right;
+    padding: 0px 0px 20px 0px;
+    font-size:12px;
+}
+.order-mian-spxx > .spxx-list .yf2>strong{
+    font-size:14px;
+    color: #ff0000;
+}
+.order-mian-spxx > .spxx-list .yf2>i{
+    font-size:16px;
+}
+

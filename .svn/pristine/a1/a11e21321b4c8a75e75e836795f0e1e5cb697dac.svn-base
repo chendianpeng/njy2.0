@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<!--[if IE 8]>         <html xmlns:ng="http://angularjs.org" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html xmlns:ng="http://angularjs.org" class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>农资农产品</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <base href="/">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/banner.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <script src="./js/vendor/modernizr-2.6.2.min.js"></script>
+    <script src="./js/vendor/jquery-1.11.1.min.js"></script>
+    <script src="./js/vendor/jquery.placeholder.js"></script>
+    <script src="./js/lib/angular-1.2.32/angular.js"></script>
+    <script src="./js/lib/angular-ui-router-0.2.10/angular-ui-router.js"></script>
+    <script src="./js/util.js"></script>
+    <script src="./js/config.js"></script>
+    <script src="./js/directive/directives.js"></script>
+    <script src="./js/model/model.js"></script>
+    <script src="./js/index.js"></script>
+</head>
+
+<body id="ng-app" ng-app="njyApp" ng-cloak>
+    <div class="container">
+        <!-- 页头-start -->
+        <div njy-pageheader></div>
+        <!-- 页头-end -->
+        <!-- logo层，右侧可以是 search-搜索框，backToIndex-返回首页图标，step-结算页中的步骤 -->
+        <div njy-pagelogo data-title="农加易管理" data-right="step"></div>
+        <!-- logo层-end -->
+        <div>
+            <div class="main nzncp">
+                <div class="wrap"></div>
+                <div class="w1200 banner">
+                    <div class="banner_box ">
+                        <div class="showBox">
+                            <div class="left">
+                                <div class="classify"><span class="icon" style="background-position: -10px -7px;"></span><span>农产品分类</span></div>
+                                <a href={{frontHost}}product_list.html?type={{item.name}}&typeId={{$index}} target="_blank" class="classify_item" ng-mouseenter="showList($index,$event)" ng-repeat="item in firstList">
+                                    <span class="icon" style="background-position: {{iconList[$index]}}"></span>
+                                    <span>{{item.name}}</span>
+                                    <span class="icon classify_arrow"></span>
+                                </a>
+                            </div>
+                            <div class="moreList">
+                                <div class="list_item" ng-init="middleListIndex=$index" ng-repeat="item in middleList[firstListIndex].childrens">
+                                    <strong>{{item.name}}</strong>
+                                    <div class="row">
+                                        <a target="_blank" href={{frontHost}}product_list.html?type={{firstList[firstListIndex].name}}&typeId={{firstListIndex}}&kind={{x.name}}&kindId={{middleListIndex}}-{{$index}} class="kind" ng-repeat="x in item.childrens">
+                                            <span class="line">&nbsp;&nbsp;|</span> &nbsp;&nbsp;{{x.name}}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="middle">
+                            <div class="banner_wrap">
+                                <div class="banner_slide">
+                                    <div class="banner_slide_box resetBannerBox" style="left: -100%;">
+                                        <a target="_blank" href="/financialService" style="width: 686px;"><img id="img0" ng-src="" alt="img"></a>
+                                        <a target="_blank" href="/financialService" style="width: 686px;"><img id="img1" ng-src="" alt="img"></a>
+                                        <a target="_blank" href="/financialService" style="width: 686px;"><img id="img2" ng-src="" alt="img"></a>
+                                    </div>
+                                    <!-- <div class="arrow"><span data-direction="right" class="banner_arrow_left">&lt;</span><span data-direction="left" class="banner_arrow_right">&gt;</span></div> -->
+                                    <div class="dotBox"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <a href="{{frontHost}}releaseGoods/xqym.html?id=243">
+                                <img src="./ad/ad20170821/right-top.jpg" width="295" alt="go">
+                            </a>
+                            <a href="{{frontHost}}manager/m_commodity.html">
+                                <img src="./img/nz_right_2.png" width="295" alt="go">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="w1200  marginBottom_20 ">
+                    <div class="bottomLineGrey_2">
+                        <div class="tab_box ">
+                            <div class="mes_tab tab32">
+                                <h1>热销产品</h1>
+                                <a target="_blank" href="{{frontHost}}product_list.html" class="more">
+                                    查看更多商品
+                                    <strong class="arrow_right"> &gt;</strong></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hot_product">
+                        <a href="{{frontHost}}releaseGoods/xqym.html?id=245">
+                            <div class="hot_item"><img src="./ad/ad20170821/hot-1.jpg" width="142" height="142" alt="热销产品"><span class="red">百色台农芒</span><span class="small">香甜现摘  美味可口</span></div>
+                        </a>
+                        <a href="{{frontHost}}releaseGoods/xqym.html?id=248">
+                            <div class="hot_item"><img src="./ad/ad20170821/hot-2.jpg" width="142" height="142" alt="热销产品"><span class="red">英德红茶</span><span class="small">特级金毫  红茶之最</span></div>
+                        </a>
+                        <a href="{{frontHost}}releaseGoods/xqym.html?id=253">
+                            <div class="hot_item"><img src="./ad/ad20170821/hot-3.jpg" width="142" height="142" alt="热销产品"><span class="red">正宗清远麻鸡</span><span class="small">山林散养  肉质鲜美</span></div>
+                        </a>
+                        <a href="{{frontHost}}releaseGoods/xqym.html?id=249">
+                            <div class="hot_item"><img src="./ad/ad20170821/hot-4.jpg" width="142" height="142" alt="热销产品"><span class="red">梅州鲜柚茶</span><span class="small">柚香浓郁  清新怡人</span></div>
+                        </a>
+                        <a href="{{frontHost}}releaseGoods/xqym.html?id=252">
+                            <div class="hot_item"><img src="./ad/ad20170821/hot-5.jpg" width="142" height="142" alt="热销产品"><span class="red">长潭硒香米</span><span class="small">新鲜直达  米香浓郁</span></div>
+                        </a>
+                        <a href="{{frontHost}}releaseGoods/xqym.html?id=246">
+                            <div class="hot_item"><img src="./ad/ad20170821/hot-6.jpg" width="142" height="142" alt="热销产品"><span class="red">清远土鸡蛋</span><span class="small">新鲜采摘  产地直供</span></div>
+                        </a>
+                    </div>
+                </div>
+                <div class="w1200 product marginBottom_20">
+                    <div class="left">
+                        <div class="title">供应信息</div>
+                        <div class="data_left">
+                            <div class="sort" style="border-bottom: 1px solid rgb(226, 226, 226);">
+                                <div class="name">当季鲜果</div><span>鲜嫩多汁</span><img width="84" height="84" alt="img" src="./img/gdGyxx.png"></div>
+                            <div class="sort" style="margin-top: 40px;">
+                                <div class="name">龙眼</div><span>香气清远</span><img width="84" height="84" alt="img" src="./img/gdGyxx2.png"></div>
+                        </div>
+                        <div class="data_right">
+                            <span><label>【粮油米面】</label>丝苗米米粒细长苗条，晶莹剔透，泛丝光，油分及蛋白质含量丰富。米饭香、软、滑，饭味浓郁。</span>
+                            <span><label>【经济作物】</label>高山蕃薯种植在空气清新、水质洁净山区。又香又甜，有补虚乏、益气力、健脾胃、强肾阴的功效。</span>
+                            <span><label>【经济作物】</label>庙南粉葛肉质白、纤维少、含淀粉高，味甜、质优，是粉葛中的珍品。</span>
+                            <span><label>【禽畜蛋奶】</label>用乌鬃鹅做出的脆皮烧鹅是粤菜一大代表，色泽金红，皮脆肉嫩，味香可口。</span>
+                            <span><label>【蔬果瓜菜】</label>增城挂绿荔枝外壳红中带绿，肉质爽脆，清甜有微香，品质极优，果实较耐贮藏。</span>
+                            <span><label>【蔬果瓜菜】</label>迟菜心有“菜心之王”的美誉，是上乘的汤料，汤味甘醇，菜香特浓，具有清心润肺，去热解毒的药效。</span>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="title">最新采购</div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td width="120" style="text-align: left;">发布时间</td>
+                                    <td width="120">采购产品</td>
+                                    <td width="80">采购数量</td>
+                                    <td width="60">剩余时间</td>
+                                    <td style="text-align: center;">我要报价</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="text-align: left;">2017-6-06</td>
+                                    <td>芡实</td>
+                                    <td>7000斤</td>
+                                    <td><span class="time">40天</span></td>
+                                    <td style="text-align: center;"><span class="btn">我要报价</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: left;">2017-5-26</td>
+                                    <td>冻顶乌龙茶</td>
+                                    <td>5000斤</td>
+                                    <td><span class="time">30天</span></td>
+                                    <td style="text-align: center;"><span class="btn">我要报价</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: left;">2017-5-20</td>
+                                    <td>霸王花 </td>
+                                    <td>2000斤</td>
+                                    <td><span class="time">24天</span></td>
+                                    <td style="text-align: center;"><span class="btn">我要报价</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: left;">2017-5-17</td>
+                                    <td>贺江大米</td>
+                                    <td>9000斤</td>
+                                    <td><span class="time">21天</span></td>
+                                    <td style="text-align: center;"><span class="btn">我要报价</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: left;">2017-5-11</td>
+                                    <td>杏花鸡 </td>
+                                    <td>3000斤</td>
+                                    <td><span class="time">15天</span></td>
+                                    <td style="text-align: center;"><span class="btn">我要报价</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="w1200 marginBottom_20">
+                    <div class="bottomLineGrey_2">
+                        <div class="tab_box hasMenu">
+                            <div class="mes_tab tab32">
+                                <h1>优质合作社</h1>
+                                <div class="subMenu">
+                                    <span ng-repeat='tab in tabList' ng-click="getIndex(tab[1])" class="{{num == tab[1] ? 'select' : ''}}">{{tab[0]}}</span>
+                                </div>
+                                <a target="" class="more" style="display: none;">
+                                    更多
+                                    <strong class="arrow_right"> &gt;</strong></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nj_mes">
+                        <div class="mechanize" ng-repeat="x in list">
+                            <div class="flag_img" style="width: 182px; height: 136px;"><img ng-src="http://static.nongj.com/static/img/{{x.imgSrc}}" alt="img"></div>
+                            <div class="text_box">
+                                <h3 class="ell">{{x.name}}</h3><span class="ell">{{x.data_1}}</span><span class="ell">{{x.data_2}}</span><span class="ell">{{x.data_3}}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div njy-pagefoot></div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+/*page*/
+.tz_pages{
+	/* width: 30px;
+    height: 19px;
+    text-align: center;
+    border: solid 1px #DCDCDC; */
+    width: 30px;
+    height: 22px;
+    text-align: center;
+    border: solid 1px #DCDCDC;
+}
+.tj_sure{
+	/* background: #fff;
+    border: solid 1px #DCDCDC;
+    line-height: 19px;
+    width: 44px;
+    font-size: 12px;
+    border-radius: 2px; */
+    background: #fff;
+    border: solid 1px #DCDCDC;
+    line-height: 19px;
+    width: 46px;
+    height: 25px;
+    font-size: 15px;
+    border-radius: 2px;
+}
+
+.tj_sure:hover{
+	transition:all .3s ease;
+}
+.font-items-12{
+	font-size: 16px;
+    color: #333;
+}
+
+.page{
+    text-align: center;
+    padding:30px 0;
+}
+.page ul{
+    font-size: 0;
+}
+.page ul li{
+    display: inline-block;
+    margin: 3px;
+    font-size: 14px;
+}
+.page ul li a{
+	display: inline-block;
+    padding: 6px 13px;
+    background: #ffffff;
+    border:1px solid #DCDCDC;
+    transition:all .3s ease;
+    color:#666;
+}
+.page ul li a:hover{
+    color:#666 !important;
+}
+.page .select{
+    background: #0984c0;
+    color: #fff;
+}
+.page .select:hover{
+    color: #fff!important;
+}
+.page ul li .page_cancel{
+	color:#ccc;
+}
+.page ul li .page_cancel:hover{
+	border:1px solid #DCDCDC;
+	cursor:not-allowed;
+}
+
+.page ul li:last-child a:hover{
+	background: #fff;
+	color:#333;
+}
+.page ul li .selected{
+    background: #0984c0;
+    border:1px solid #0984c0;
+    color: #ffffff;
+    cursor: default;
+}

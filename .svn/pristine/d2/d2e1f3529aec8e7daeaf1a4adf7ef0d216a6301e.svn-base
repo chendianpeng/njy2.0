@@ -1,0 +1,32 @@
+{
+  "name": "njy2",
+  "version": "2.0.0",
+  "description": "农加易2.0，加入购物，交易闭环",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "ipconfig && browser-sync start --port 8080 --server --files \"*.html,js/**/*.js, view/**/*.html, component/**/*.html\""
+  },
+  "author": "sn-front-group",
+  "license": "ISC",
+  "dependencies": {
+
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-changed": "^3.1.0",
+    "gulp-clean-css": "^3.7.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-imagemin": "^3.3.0",
+    "gulp-jshint": "^2.0.4",
+    "gulp-less": "^3.3.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^3.0.0",
+    "http-server": "^0.10.0",
+    "imagemin-pngquant": "^5.0.1"
+  }
+}

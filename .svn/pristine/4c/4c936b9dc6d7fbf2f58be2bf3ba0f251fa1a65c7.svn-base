@@ -1,0 +1,72 @@
+angular.module("njy-model", ["njy-config"])
+  //公共请求方法
+  .service("fetch", ["$http", "$q", "NJYCON", function($http, $q, NJYCON) {
+    var _ajax = function(type, url, data) {
+      var dtd = $q.defer();
+
+      $http({
+        method:type,
+        url: NJYCON.loginUrl + url,
+        withCredentials: true,
+        headers: {
+          "sessionId": getCookie("token")
+        },
+        data: data || ""
+      }).then(function(_data) {
+        console.log('数据提交成功')
+        dtd.resolve(_data);
+      }, function(err) {
+        dtd.reject({});
+      });
+      return dtd.promise;
+    };
+    var get = function(url, data) {
+      return _ajax("GET", url, data);
+    };
+    var post = function(url, data) {
+      return _ajax("POST", url, data);
+    };
+    return {
+      get: get,
+      post: post
+    };
+  }])
+  .factory("buyCar", ["fetch", function(fetch) {
+    //删除购物车中的商品
+    var deleteByIds = function(_data) {
+      /*
+      CarDelVo {
+      carNo (string, optional): 购物车编码 ,
+      goodsIds (Array[integer], optional): 商品主键集合
+      }*/
+      return fetch.post("api/car/carInfo/edit/deleteByIds", _data);
+    };
+    //保存/编辑购物车（当返回操作失败时：判断auithStatus=0：采购商未通过审核，auithStatus=2：没有该账号的采购商信息）
+    var save = function(_data) {
+      /*{
+      "amount": 0,
+      "goodsId": 0,
+      "supplierId": 0
+    }*/
+      return fetch.post("api/car/carInfo/edit/save",_data);
+    };
+
+    var listAllGroup=function(_data) {
+      /*{
+       "goodsIds": [
+       0
+       ],
+       "isClose": 0,
+       "supplierIds": [
+       0
+       ]
+       }*/
+      return fetch.post("api/car/carInfo/find/listAllGroup",_data);
+    };
+
+    return {
+        deleteByIds: deleteByIds,
+        save: save,
+        listAllGroup:listAllGroup
+    };
+  }])

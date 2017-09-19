@@ -1,0 +1,46 @@
+<div>
+  <style>
+    .njy-pager{clear:both;text-align:center;margin:10px auto;}
+    .njy-pager .inner{display:inline-block;height:32px;line-height:32px;}
+    .njy-pager .items,
+    .njy-pager .total,
+    .njy-pager .form{display:inline-block;font-size:12px;color:#666;}
+    .njy-pager .item{display:inline-block;border:1px solid #ddd;margin-left:3px;}
+    .njy-pager .item>a{display:block;color:#666;}
+    .njy-pager .item.num>a,
+    .njy-pager .item.num,
+    .njy-pager .item.dot{width:34px;}
+    .njy-pager .item.dot{line-height:24px;height:32px;vertical-align:top;border-color:transparent;pointer-events:none;}
+    .njy-pager .item.disabled{color:#ccc;border-color:#eee;background:#f5f5f5;pointer-events:none;}
+    .njy-pager .item.disabled>a{color:#ccc;pointer-events:none;}
+    .njy-pager .item.disabled>a:hover{color:#ccc;}
+    .njy-pager .item.active{color:#0984c0;border-color:transparent;pointer-events:none;}
+    .njy-pager .item.active>a{color:#0984c0;}
+    .njy-pager .prev,
+    .njy-pager .next{width:76px;}
+    .njy-pager .input{width:34px;border:1px solid #ddd;line-height:30px;padding-left:5px;height:30px;display:inline-block;vertical-align:top;}
+    .njy-pager .pager-comfirm-btn{width:50px;border:1px solid #ddd;display:inline-block;}
+  </style>
+  <div class="njy-pager">
+    <div class="inner">
+      <ul class="items" ng-click="itemClick($event)">
+          <li class="item prev" ng-class="{'disabled':currentPage==1}">
+            <a item-click="prev">&lt;&nbsp;上一页</a>
+          </li><li class="item"
+            ng-repeat="item in items"
+            ng-class="{'dot':item.click=='dot','num':item.click=='num','active':currentPage==item.name}" >
+            <a item-click="{{item.click}}">{{item.name}}</a>
+          </li><li class="item next" ng-class="{'disabled':currentPage==total}">
+            <a item-click="next">下一页&nbsp;&gt;</a>
+          </li>
+      </ul>
+      <div class="total">共&nbsp;{{total}}&nbsp;页，</div>
+      <div class="form">
+        <span class="text">到第</span>
+        <input class="input" type="number" value="" min="1" max="{{total}}" ng-model="pageNum">
+        <span class="text">页</span>
+        <a class="pager-comfirm-btn" item-click="enter" ng-click="itemClick($event)">确定</a>
+      </div>
+    </div>
+  </div>
+</div>

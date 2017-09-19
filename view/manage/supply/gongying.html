@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<!--[if IE 8]>         <html xmlns:ng="http://angularjs.org" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html xmlns:ng="http://angularjs.org" class="no-js">
+<!--<![endif]-->
+<html lang="en" ng-app="njyApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <base href="/">
+    <title>供应订单</title>
+    <!--<link rel="stylesheet" href="./js/My97DatePicker/skin/WdatePicker.css">-->
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/su-pu/l-nav.css">
+    <link rel="stylesheet" href="./css/su-pu/gongying.css">
+    <link rel="stylesheet" href="./css/su-pu/g-c-common.css">
+</head>
+<body ng-controller="myapp">
+<!--头部-->
+<div njy-pageheader></div>
+<!--农家易-->
+<div njy-pagelogo data-title="农加易管理"  data-right="backToIndex"></div>
+<!--主要内容-->
+<div class="w1200 l-main">
+    <div class="l-nav_list">
+        <span><a href="../../../index.html">首页</a></span>&nbsp;&#62;
+        <span><a href="../manager/m_commodity.html">农加易管理</a></span>&nbsp;&#62;
+        <span><a href="javascript:;">商品管理</a></span>
+    </div>
+    <div class="content">
+        <div class="content-l">
+            <div class="p18px njygl">
+                农家易管理
+            </div>
+            <ul class="gy">
+                <p class="p50px gygl cggl"><img src="./img/su-pu/m_logo_c.png" alt="" class="imgs">供应管理</p>
+                <li class="p50px m-t-b20"><a href="javascript:;">商品管理</a></li>
+                <li class="p50px m-b20"><a class="cura" href="javascript:;">供应订单</a></li>
+                <li class="p50px m-b20"><a href="javascript:;">供应商信息</a></li>
+            </ul>
+            <ul class="gy cg">
+                <p class="p50px gygl cggl"><img src="./img/su-pu/c_icon.png" alt="" class="imgs">采购管理</p>
+                <li class="p50px m-t-b20"><a href="javascript:;">采购订单</a></li>
+                <li class="p50px m-b20"><a href="javascript:;">采购商信息</a></li>
+            </ul>
+        </div>
+        <div class="content-r">
+            <ul class="content-r-tab clearfix">
+                <li ng-class="{tabcur:tabType=='-1'}" ng-click="tabclick('-1')">所有订单 <i></i></li>
+                <li ng-class="{tabcur:tabType=='0'}" ng-click="tabclick('0')">待确认 <i></i></li>
+                <li ng-class="{tabcur:tabType=='1'}" ng-click="tabclick('1')">待付款 <i></i></li>
+                <li ng-class="{tabcur:tabType=='2'}" ng-click="tabclick('2')">待发货 <i></i></li>
+                <li ng-class="{tabcur:tabType=='3'}" ng-click="tabclick('3')">待收货 <i></i></li>
+                <li ng-class="{tabcur:tabType=='4'}" ng-click="tabclick('4')">已完成 <i></i></li>
+                <li ng-class="{tabcur:tabType=='5'}" ng-click="tabclick('5')">已关闭</li>
+            </ul>
+            <div class="search" ng-show="all">
+                <p class="search-title">
+                    <input type="text" placeholder="输入商品标题或订单号进行搜索" ng-model="title">
+                    <button ng-click="titleClick()">搜索</button>
+                </p>
+                <p class="search-status">
+                    <label for="stt">订单状态</label>
+                    <select id="stt">
+                        <option value="-1" selected="selected">全部</option>
+                        <option value="0">待确认</option>
+                        <option value="1">待付款</option>
+                        <option value="2">待发货</option>
+                        <option value="3">待收货</option>
+                        <option value="4">已完成</option>
+                        <option value="5">已关闭</option>
+
+                    </select>
+                    <label for="stt-name">采购商名称</label>
+                    <input type="text" id="stt-name">
+                </p>
+                <p class="search-date">
+                    <label for="sDate">下单时间</label>
+                    <input id="sDate" class="Wdate"
+                           onclick="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'eDate\')}'})" placeholder="请选择时间范围起始"/>
+                    <span></span>
+                    <input id="eDate" ng-model="oMarket" class="Wdate"
+                           onclick="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'sDate\')}'})" placeholder="请选择时间范围结束"/>
+                </p>
+                <p class="search-btn">
+                    <button class="btncur" ng-click="sclick()">搜索</button>
+                </p>
+
+            </div>
+            <!--订单列表标题-->
+            <div class="list-title">
+                <span class="sp1">商品</span>
+                <span class="sp2">商品操作</span>
+                <span class="sp3">单价（元）</span>
+                <span class="sp4">数量</span>
+                <span class="sp5">实付款（元）</span>
+                <span class="sp6">订单状态</span>
+                <span class="sp7">操作</span>
+            </div>
+            <!--具体订单-->
+            <div class="list-order" ng-repeat="(key,listarr) in listArr">
+                <table cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td colspan="7" class="td-title">
+                            <span>订单编号:{{listarr.orderNo }}</span>
+                            <span>{{listarr.createDate|njyDate }}</span>   <!--日期-->
+                            <span>采购商：{{listarr.purchaserName  }}</span>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="(key1,list) in listarr.orderItemVoList">
+                        <td class="td1">
+                            <div>
+                                <div class="td1-img">
+                                    <a href="javascript:;">
+                                        <img ng-src="{{list.goodsImage}}" alt="">  <!--商品图片-->
+                                    </a>
+                                </div>
+                                <div class="td1-a">
+                                    <a href="javascript:;">
+                                        {{list.goodsTitle}}  <!--商品标题-->
+                                    </a>
+                                </div>
+
+                            </div>
+                        </td>
+                        <td class="td2" ng-if="list.status!=6&&list.status!=7"><a href="javascript:;"></a></td> <!--商品操作-->
+                        <td class="td2" ng-if="list.status==6"><a href="javascript:;">处理退款</a></td> <!--商品操作-->
+                        <td class="td2" ng-if="list.status==7"><a href="javascript:;">查看退款详情</a></td> <!--商品操作-->
+                        <td class="td3">{{list.goodsPrice|number:2}} </td>  <!--商品单价-->
+                        <td class="td4">{{list.goodsAmount }}</td> <!--商品数量-->
+                        <td ng-if="key1<1" class="td5" rowspan="3">{{listarr.actualPayMoney|number:2 }}<br><i ng-show="listarr.freight">(含运费{{listarr.freight}}元)</i><i ng-hide="listarr.freight">(运费待确认)</i></td> <!--实付款-->
+                        <td ng-if="key1<1" ng-show="listarr.orderStatus==0" class="td6" rowspan="3">待确认<br><i ng-show="list.status==6">(退款中)</i></td> <!--订单状态-->
+                        <td ng-if="key1<1" ng-show="listarr.orderStatus==1" class="td6" rowspan="3">待付款<br><i ng-show="list.status==6">(退款中)</i></td> <!--订单状态-->
+                        <td ng-if="key1<1" ng-show="listarr.orderStatus==2" class="td6" rowspan="3">待发货<br><i ng-show="list.status==6">(退款中)</i></td> <!--订单状态-->
+                        <td ng-if="key1<1" ng-show="listarr.orderStatus==3" class="td6" rowspan="3">待收货<br><i ng-show="list.status==6">(退款中)</i></td> <!--订单状态-->
+                        <td ng-if="key1<1" ng-show="listarr.orderStatus==4" class="td6" rowspan="3">已完成</td> <!--订单状态-->
+                        <td ng-if="key1<1" ng-show="listarr.orderStatus==5" class="td6" rowspan="3">已关闭</td> <!--订单状态-->
+                        <td ng-if="key1<1" class="td7" rowspan="3">  <!--操作-->
+                            <a href="javascript:;">订单详情</a><br>
+                            <a href="javascript:;" ng-click="qxddclick()">取消订单</a><br>
+                            <a href="javascript:;">去发货</a></td>
+                    </tr>
+                </table>
+            </div>
+            <!--分页-->
+
+            <!--* 分页指令，参数不能为空-->
+            <!--* current-page:当前页-->
+            <!--* total-page:总页数-->
+            <!--* get-list:更新列表的函数方法，函数可改，须带上一个page参数（表示选中页）-->
+
+            <div njy-pager current-page="{{currentpage}}" total-page="{{totalpage}}" get-list="getListByPage(page)"></div>
+
+        </div>
+
+    </div>
+</div>
+
+<!--尾部-->
+<div njy-pagefoot></div>
+<!--取消订单弹窗-->
+<div class="gyalert" ng-show="isqx">
+    <p>你确定取消该订单吗？取消订单后，不能恢复</p>
+    <p>请选择取消订单的原因：<select name="" id="gyalertse">
+        <option value="请选择原因">请选择原因</option>
+        <option value="没货了交易无法完成">没货了交易无法完成</option>
+        <option value="买家信息填写有误">买家信息填写有误</option>
+        <option value="长时间联系不到买家，交易不成功">长时间联系不到买家，交易不成功</option>
+        <option value="买家不想购买了">买家不想购买了</option>
+        <option value="线下完成交易">线下完成交易</option>
+        <option value="其他">其他</option>
+    </select>
+    </p>
+    <span class="fh" ng-click="fhclick(isqx=false)">返回</span>
+    <span class="qd" ng-click="qdclick()">确定</span>
+</div>
+
+<!--js-->
+<script src="../../../js/My97DatePicker/WdatePicker.js"></script>
+<script src="./js/vendor/jquery-1.8.2.min.js"></script>
+<script src="./js/vendor/jquery.placeholder.js"></script>
+<script src="./js/lib/angular-1.2.32/angular.js"></script>
+<script src="./js/vendor/modernizr-2.6.2.min.js"></script>
+<script src="./js/util.js"></script>
+<script src="./js/config.js"></script>
+<script src="./js/directive/directives.js"></script>
+<script src="./js/model/model.js"></script>
+<script src="./js/index.js"></script>
+<script src="./js/su-pu/gongying.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,389 @@
+<div>
+    <style>
+    .header_bg {
+        background-color: #eee;
+        color: #bbbbbb;
+        font-size: 12px;
+        height: 35px;
+        line-height: 35px;
+    }
+
+    .black {
+        background-color: #424242;
+    }
+
+    .header {
+        width: 1200px;
+        margin: 0 auto;
+    }
+
+    .header .njy {
+        position: relative;
+        float: left;
+    }
+
+    .header .njy span {
+        color: #666;
+    }
+
+    .header .header_menu a.njy-nav-item {
+        width: 84px;
+        padding:0 0 0 10px;
+        height: 35px;
+        line-height: 35px;
+        border-left: 1px solid transparent;
+        border-right: 1px solid transparent;
+        display: inline-block;
+    }
+    .header .header_menu a.njy-nav-item.hoverNjy{
+        background-color: #fff;
+        border-color:#e2e2e2;
+    }
+
+    .njyList {
+        position: absolute;
+        background: #fff;
+        border:1px solid #e2e2e2;
+        border-top: none;
+        top: 33px;
+        left: 0;
+        z-index: 2;
+        white-space: nowrap;
+        display: none;
+        box-shadow:0px 4px 4px rgba(0, 0, 0, 0.1);
+    }
+    .njyList.min-nav{
+      padding:16px 22px 18px 20px;
+      text-align: left;
+      line-height:1;
+    }
+
+    .header .header_menu .min-nav a,
+    .min-nav strong {
+        display: block;
+        font-size:12px;
+    }
+    .min-nav strong {
+        color: #666;
+        font-weight: bold;
+    }
+    .header .header_menu .min-nav a {
+        color: #999;
+        padding:0;
+        margin-top:16px;
+
+    }
+    .min-nav>div {
+        display: inline-block;
+        vertical-align: top;
+        font-size:0;
+    }
+    .min-nav>div.right {
+        margin-left:40px;
+    }
+
+    .njy .down {
+        background: url(./images/arrow-d-gray.png) no-repeat ;
+        display: inline-block;
+        width:14px;
+        height:15px;
+        margin-left:6px;
+        vertical-align: middle;
+    }
+
+    .nav_list {
+        background-color: #fff;
+        margin-top: 5px;
+        height: 50px;
+        line-height: 45px;
+        color: #666;
+        border-bottom: 1px solid #e5e5e5;
+
+    }
+
+    .noBg_nav_list {
+        font-size: 16px;
+        margin-top: 5px;
+        height: 50px;
+        line-height: 45px;
+        color: #666;
+    }
+
+    .nav_list a,
+    .noBg_nav_list a {
+        color: #666;
+        display: inline-block;
+    }
+
+    .nav_list .arrow,
+    .noBg_nav_list .arrow {
+        font-family: "宋体";
+        margin-left: 6px;
+        width: 20px;
+        text-align: center;
+        display: inline-block;
+    }
+
+    .nav_list a:hover,
+    .noBg_nav_list a:hover {
+        color: #2c99cd !important;
+    }
+
+    .nav_list .select,
+    .noBg_nav_list .select {
+        color: #2c99cd;
+    }
+
+    .header .njy-buy-car a.njy-nav-item{
+      width:61px;
+      background:url(./images/car-ico.png) no-repeat 11px center;
+      padding-left:35px;
+    }
+
+    .njy-buy-car .down{
+      background:url(./images/arrow-d-blur.png) no-repeat;
+    }
+    .njy-buy-car .njyList{
+        width: 296px;
+        text-align: center;
+        padding: 20px 22px;
+    }
+    .njy-buy-car .njyList .car-no-login{
+        padding: 54px 0;
+        text-align: center;
+        line-height:1;
+    }
+    .car-no-login {}
+
+    .njy-buy-car .njyList .car-no-login a {
+        color: #2c99cd;
+        font-weight: bold;
+    }
+
+    .car-login {}
+
+    .car-body {
+        border-bottom: 1px solid #e2e2e2;
+        padding-bottom: 20px;
+        color:#666;
+        line-height: 1;
+    }
+
+    .car-body .empty-car {
+
+      padding-top:20px;
+      padding-bottom:15px;
+    }
+
+    .car-body .left {
+        display: table-cell;
+        vertical-align: top;
+    }
+
+    .car-body .left img {
+        width: 50px;
+        height: 50px;
+        display: block;
+        cursor: pointer;
+    }
+    .car-list>.title{
+      color: #999;
+      text-align: left;
+    }
+
+    .car-body .right {
+        display: table-cell;
+        vertical-align: top;
+        text-align: left;
+        padding: 0 10px;
+    }
+
+    .car-body li{
+      padding-top:10px
+    }
+
+    .car-body .right .title {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 226px;
+        color:#333;
+        padding-top: 10px;
+        cursor: pointer;
+    }
+
+    .header .header_menu a.look-my-car{
+      background: #ff7800;
+      color:#fff;
+      padding: 0 18px;
+      height:30px;
+      line-height:30px;
+      margin-top:20px;
+      display:inline-block;
+      float:right;
+      right:-2px;
+      border-radius:3px;
+    }
+    .header .header_menu a.look-my-car:hover{
+        color:#fff!important;
+    }
+
+    .price-btns {
+        position: relative;
+        padding-top: 14px;
+    }
+    .price-btns p{
+      color:#666;
+    }
+    .price-btns span{
+      color:#ff0000!important;
+      font-weight:bold;
+    }
+
+    .car-del-btn {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        color: #2c99cd!important;
+    }
+    .car-tips{
+      text-align:right;
+      line-height:1;
+      padding-top:12px;
+      margin-bottom:-8px;
+    }
+    .car-tips>span{
+      color:#ff0000!important;
+      font-weight:bold;
+    }
+
+    .header .header_menu {
+        float: right;
+        height: 35px;
+        line-height: 35px;
+    }
+
+    .header .header_menu span {
+        color: #999;
+    }
+    .header .header_menu span.user-name{
+      color:#2c99cd;
+      overflow:hidden;
+      width:100px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: inline-block;
+      vertical-align: top;
+      margin-left:10px;
+    }
+    .header .header_menu a {
+        padding: 0 5px;
+        color: #bbbbbb;
+    }
+
+    .header .header_menu .qrBox {
+        display: inline-block;
+        position: relative;
+        vertical-align: text-top;
+    }
+
+    .header .header_menu .qrBox .icon {
+        vertical-align: middle;
+        padding-left: 5px;
+        cursor: pointer;
+    }
+
+    .header .header_menu .qrBox .qrcode {
+        display: none;
+        position: absolute;
+        padding-top: 22px;
+        top: 0px;
+        right: -38px;
+        cursor: pointer;
+        z-index: 11;
+    }
+
+    .header .header_menu .qrBox .qrcode:hover,
+    .header .header_menu .qrBox:hover .qrcode {
+        display: block;
+    }
+
+
+
+    </style>
+    <div class="full header_bg">
+        <div class="header">
+            <span>网站试运行中</span>
+            <div class="header_menu">
+                <!-- 购物车 -->
+                <div class="njy njy-buy-car">
+                    <a class="njy-nav-item" ng-href="{{frontHost}}manager/m_commodity.html">
+                    购物车<span class="down"></span></a>
+                    <div class="njyList">
+                        <div ng-hide="isLogin" class="car-no-login">
+                            <p>尚未登录不能查看购物车&nbsp;<a href="#">去登陆 &gt;</a></p>
+                        </div>
+                        <div ng-show="isLogin" class="car-login">
+                            <div class="car-body">
+                                <div ng-hide="!!goodsNum" class="empty-car">购物车中暂未添加任何商品</div>
+                                <div ng-show="!!goodsNum" class="car-list">
+                                  <p class="title">最近加入的商品：</p>
+                                  <ul>
+                                      <li ng-repeat="goods in goodsList | limitTo:4" ng-click="openGoodsInfo(goods.goondsId)">
+                                          <div class="left"><img ng-src="{{goods.goodsImage}}" alt=""></div>
+                                          <div class="right">
+                                              <p class="title">{{goods.goodsName}}</p>
+                                              <div class="price-btns">
+                                                  <p><span>￥{{goods.price*100/100 | number:2}}</span> × 1</p>
+                                                  <a class="car-del-btn" href="javascript:;" ng-click="delCarGoods($index)">删除</a>
+                                              </div>
+                                          </div>
+                                      </li>
+                                  </ul>
+                                </div>
+                            </div>
+                            <p ng-show="goodsNum>4" class="car-tips">购物车里还有 <span>{{goodsNum-4}}</span> 件商品</p>
+                            <a class="look-my-car" href="javascript:;">查看我的购物车</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="njy">
+                    <a class="njy-nav-item" ng-href="{{frontHost}}manager/m_commodity.html">
+                    农加易管理<span class="down"></span></a>
+                    <div class="njyList min-nav">
+                        <div>
+                            <strong>我是供应商</strong>
+                            <a ng-href="#">商品管理</a>
+                            <a ng-href="#">供应订单</a>
+                            <a ng-href="#">供应商信息</a>
+                        </div>
+                        <div class="right">
+                            <strong>我是采购商</strong>
+                            <a ng-href="#">采购订单</a>
+                            <a ng-href="#">采购商信息</a>
+                        </div>
+                    </div>
+                </div>
+                <form ng-hide="isLogin" id="loginForm" method="post" ng-action="{{loginUrl}}new/inLogin.action">
+                    <input type="hidden" name="token" ng-value="token">
+                    <input type="hidden" name="backUrl" ng-value="backUrl">
+                    <a class="loginBtn">登录</a>
+                </form>
+                <span ng-show="isLogin" class="user-name" title="{{userName}}">欢迎您，{{userName}}</span>
+                <form ng-show="isLogin" id="quitForm" method="post" ng-action="{{loginUrl}}new/logOut.action">
+                    <input type="hidden" name="token" ng-value="token">
+                    <a id="logOut">退出</a>
+                </form>
+                <span>|</span>
+                <a ng-hide="isLogin" ng-href="{{loginUrl}}new/account/reg.action">注册</a>
+                <a ng-href="{{nongjiawangHost}}help">帮助中心</a>
+                <div class="qrBox">
+                    <img class="icon" ng-src="{{serverFrontHost}}img/wechat_icon.png" />
+                    <span class="qrcode">
+                        <img ng-src="{{serverFrontHost}}img/qrcode.png" width="94" height="102" />
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

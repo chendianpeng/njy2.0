@@ -1,0 +1,103 @@
+
+<body>
+<!-- 页头-start -->
+<div njy-pageheader></div>
+<!-- 页头-end -->
+<!-- logo层，右侧可以是 search-搜索框，backToIndex-返回首页图标，step-结算页中的步骤 -->
+<div njy-pagelogo data-title="农加易管理" data-right="step"></div>
+<!-- logo层-end -->
+<table ng-if="have">
+    <thead class="bg-f1">
+    <tr>
+        <td class="td-lf">
+            <input id="All" ng-disabled="!allCheck" type="checkbox">
+            <label ng-model="all" ng-class="allCheck?(all?'bg-yes':''):'bg-e'" ng-click="allCheck?allSel():''"
+                   for="All"></label>
+            全选
+        </td>
+        <td>商品</td>
+        <td>单价/规格</td>
+        <td>数量</td>
+        <td>小计</td>
+        <td>操作</td>
+    </tr>
+    </thead>
+    <tbody ng-repeat="(key,temp) in cartList">
+    <tr>
+        <td class="td-lf">
+            <input ng-disabled="temp.canCheck" id="{{key}}" type="checkbox">
+            <label ng-click="partSel(key)" ng-model="temp.isActive"
+                   ng-class="!temp.canCheck?'bg-e':temp.isActive?'bg-yes':''" for="{{key}}"></label>
+            {{temp.supplierName}}
+        </td>
+    </tr>
+    <tr ng-repeat="(key1,list) in temp.carGoods" ng-class="!list.isPublish?'bg-f5':list.isActive?'bg-f6':''"
+        class="tr-h120">
+        <td class="td-lf td-w120">
+            <input id="{{key+key1}}" class="vat" type="checkbox" ng-disabled="!list.isPublish">
+            <label ng-click="!list.isPublish?'':someSel(key,key1)" ng-model="list.isActive"
+                   ng-class="{'bg-yes':list.isActive,'bg-e':!list.isPublish}" for="{{key+key1}}"></label>
+            <img height="80" width="80" src="img/images/shopcart_01.png" alt="">
+        </td>
+        <td class="td-w400">
+            <span class="s-w290 h80">{{list.goodsName}}</span>
+            <span style="color:#ff0000;font-weight: bold;padding-left: 20px;" class="vat"
+                  ng-show="!list.isPublish">已下架</span>
+        </td>
+        <td>
+            <div class="h80">
+                <p ng-if="list.price1"
+                   ng-class="!list.isPublish?'bg-f5':list.initialVolume2?(list.amount>=list.initialVolume1&&list.amount<list.initialVolume2?'ft-3':''):list.amount>=list.initialVolume1?'ft-3':''">
+                    {{list.initialVolume1+(list.up?'':'斤以上')}} <b>{{'￥'+list.price1}}</b>
+                    {{list.packSpec}}</p>
+                <p ng-if="list.price2"
+                   ng-class="!list.isPublish?'bg-f5':list.amount>=list.initialVolume2&&list.amount<list.initialVolume3?'ft-3':''">
+                    {{list.initialVolume2+'斤以上'}} <b>{{'￥'+list.price2}}</b>
+                    {{list.packSpec}}</p>
+                <p ng-if="list.price3" ng-class="!list.isPublish?'bg-f5':list.amount>=list.initialVolume3?'ft-3':''">
+                    {{list.initialVolume3+'斤以上'}} <b>{{'￥'+list.price3}}</b>
+                    {{list.packSpec}}</p>
+            </div>
+        </td>
+        <td>
+            <div class="h80">
+                <div class="numb">
+                    <span ng-click="!list.isPublish?'':red(list.amount,list.initialVolume1,key,key1,list.amount,list.isActive,list.goodsId,list.supplierId)"
+                          class="s-btn">-</span><input
+                        ng-blur="inpCg(list.amount,list.initialVolume1,key,key1,list.isActive,list.goodsId,list.supplierId)"
+                        ng-disabled="!list.isPublish" ng-model="list.amount" type="text" class="s-val"><span
+                        ng-click="!list.isPublish?'':add(list.amount,list.initialVolume1,key,key1,list.amount,list.isActive,list.goodsId,list.supplierId)"
+                        class="s-btn">+</span>
+                </div>
+            </div>
+        </td>
+        <td class="td-xj"><p class="h80" ng-class="!list.isPublish?'bg-f5':''">
+            ￥{{list.xj | number : 2}}</p>
+        </td>
+        <td>
+            <div class="h80">
+                <a href="#" ng-click="remove(key,key1,$event,list.goodsId)">删除</a>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+
+</table>
+<div ng-if="have" id="total">
+    <div class="total-lf">
+        <input id="cmp-all" ng-disabled="!allCheck" type="checkbox">
+        <label ng-model="all" ng-class="allCheck?(all?'bg-yes':''):'bg-e'" ng-click="allCheck?allSel():''"
+               for="cmp-all"></label>
+        <span>全选</span>
+        <a href="#" ng-click="removeSome($event)">删除选中的商品</a>
+    </div>
+
+    <div class="total-rt" ng-click="haveChecked?balance():''">结算</div>
+    <p class="fl-r">合计（不含运费）：<b class="bg-ec1818">￥{{total | number : 2}}</b></p>
+</div>
+<!--空购物车-->
+<div id="no-cart" ng-if="!have">
+    <img src="img/images/little_03.png" alt="">
+    <p>您的购物车还是空的，去看看心仪的商品吧 <a href="#">去购物 ></a></p>
+</div>
+</body>

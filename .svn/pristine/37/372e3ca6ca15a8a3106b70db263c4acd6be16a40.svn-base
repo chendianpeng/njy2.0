@@ -1,0 +1,39 @@
+angular.module("njy-model",["njy-config"])
+.factory("getCurrentUser", ["$http", "$q", "NJYCON", function($http, $q,
+  NJYCON) {
+  var dtd = $q.defer();
+  $http({
+    type: "GET",
+    url: NJYCON.hostUrl + "api/user/user/find/getCurrentUser",
+    withCredentials: true,
+    headers: {
+      "sessionId": getCookie("token")
+    }
+  }).then(function(_data) {
+    dtd.resolve(_data);
+  }, function(err) {
+    dtd.reject({});
+  });
+  return {
+    getUser: dtd.promise
+  };
+}])
+.factory("buyCar", ["$http", "$q", "NJYCON", function($http, $q,
+  NJYCON) {
+  var dtd = $q.defer();
+  $http({
+    type: "GET",
+    url: NJYCON.hostUrl + "api/user/user/find/getCurrentUser",
+    withCredentials: true,
+    headers: {
+      "sessionId": getCookie("token")
+    }
+  }).then(function(_data) {
+    dtd.resolve(_data);
+  }, function(err) {
+    dtd.reject({});
+  });
+  return {
+    getUser: dtd.promise
+  };
+}]);

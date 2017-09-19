@@ -1,0 +1,158 @@
+/*采购商信息*/
+body {
+    background-color: #ffffff;
+    position: relative;
+}
+.content{
+
+    margin-bottom: 65px;
+
+    min-height: 918px;
+
+}
+.content-l{
+    min-height: 918px;
+}
+
+.content-r{
+    width: 942px;
+    height: 893px;
+    border:1px solid #ccc;
+    float: right;
+    padding: 25px 25px 0px 25px;
+}
+
+.content-r .xinxi{
+    color: #333;
+    border-bottom: 1px solid #ececec;
+    padding-bottom: 12px;
+    position: relative;
+}
+.content-r .ts{
+    margin-top: 104px;
+    text-align: center;
+    color: #666;
+    font-size:14px;
+
+}
+.content-r .ts>a{
+    color: #2c99cd;
+}
+.content{
+    margin-bottom: 65px;
+}
+.content-r .xinxi>span{
+    display: inline-block;
+    font-size: 12px;
+    color: #fff;
+    line-height: 20px;
+    text-align: center;
+    height: 20px;
+    position: absolute;
+    top:0px;
+    left: 90px;
+}
+.content-r .xinxi .tg{
+    width: 61px;
+    height: 20px;
+    background-color: #2bb43e;
+}
+.content-r .xinxi .btg{
+    width: 73px;
+    background-color: #df2323;
+}
+.content-r .mt20{
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #666666;
+    height: 36px;
+    line-height: 36px;
+}
+.content-r .mt20>label{
+    display: inline-block;
+    width: 160px;
+    padding-right: 25px;
+    text-align: right;
+    position: relative;
+}
+.content-r .mt20>label>i{
+    position: absolute;
+    top:0px;
+    right: 19px;
+}
+.content-r .mt20>input{
+    width: 400px;
+    height: 28px;
+   line-height: 28px;
+    font-size: 14px;
+    color: #666;
+    padding-left: 11px;
+    background-color: #f2f2f2;
+    border:1px solid #DCDCDC;
+
+}
+.content-r .mt20>select{
+    width: 131px;
+    background-color: #f2f2f2;
+    border:1px solid #DCDCDC;
+    height: 36px;
+    font-size: 14px;
+    color: #666;
+}
+.content-r .gysimg{
+    height: 86px;
+    vertical-align: top;
+}
+.content-r .gysimg>label{
+
+    height: 86px;
+    vertical-align: top;
+}
+.content-r .gysimg .tp{
+    display: inline-block;
+    width: 86px;
+    height: 86px;
+
+}
+.b1px{
+    border:1px solid #ccc;
+}
+.content-r .gysimg .tp>img{
+    width: 86px;
+    height: 86px;
+}
+.content-r .bj>span{
+    display: inline-block;
+    height: 36px;
+    width: 118px;
+    color: #fff;
+    border-radius: 2px;
+    background-color: #0b95d7;
+    border:1px solid #e2e2e2;
+    font-size: 14px;
+    text-align: center;
+    line-height: 36px;
+    cursor: pointer;
+
+}
+.img-ts{
+    font-size:14px;
+    color: #666666;
+}
+.content-r .zh{
+    margin-top: 66px;
+}
+.content-r .szd>div{
+    display: inline-block;
+}
+.njy-addr-area select:nth-of-type(1){
+    margin-left: 0px;
+}
+.content-r .njy-addr-area select{
+    position: relative;
+    top:0px;
+    left: -5px;
+    color: #666;
+    width: 131px;
+    height: 36px;
+}

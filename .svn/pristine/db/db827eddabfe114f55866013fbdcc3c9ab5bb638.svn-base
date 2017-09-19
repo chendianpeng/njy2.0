@@ -1,0 +1,38 @@
+// Avoid `console` errors in browsers that lack a console.
+(function() {
+    var method;
+    var noop = function () {};
+    var methods = [
+        'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
+        'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
+        'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
+        'timeStamp', 'trace', 'warn'
+    ];
+    var length = methods.length;
+    var console = (window.console = window.console || {});
+
+    while (length--) {
+        method = methods[length];
+
+        // Only stub undefined methods.
+        if (!console[method]) {
+            console[method] = noop;
+        }
+    }
+}());
+
+function setCookie(name, value, domain) {
+	var Days = 0.5;
+	var exp = new Date();
+	exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+	document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString() + (domain ? (";domain=" + domain) : "") + ";path=/";
+}
+
+function getCookie(name) {
+	var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+	if (arr = document.cookie.match(reg)) {
+		return unescape(arr[2]);
+	} else {
+		return "";
+	}
+}

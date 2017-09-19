@@ -1,0 +1,28 @@
+.crumbs {
+    padding-top: 5px;
+    height: 50px;
+    line-height: 45px;
+    color: #666;
+    font-size: 16px;
+}
+
+.crumbs a{
+    color: #666 !important;
+    display: inline-block;
+}
+
+.crumbs .arrow {
+    font-family: "\5B8B\4F53";
+    margin-left: 6px;
+    width: 20px;
+    text-align: center;
+    display: inline-block;
+}
+
+.crumbs a:hover {
+    color: #2c99cd !important;
+}
+
+.crumbs .select {
+    color: #2c99cd;
+}

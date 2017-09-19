@@ -1,0 +1,242 @@
+/*
+卖家发货-退款中订单阶段*/
+
+/*等待供应商退款中*/
+.content-header-l strong>i{
+    display: inline-block;
+    font-size: 12px;
+    color: #999;
+}
+/*进度条退款中*/
+.jdt ul > li .tkz{
+    width: 60px;
+    height: 20px;
+    background-color: #cbeeff;
+    color: #0984c0;
+    position: absolute;
+    font-size:12px;
+    top:-33px;
+    left:20px;
+    line-height: 20px;
+    text-align: center;
+}
+/*第三方物流*/
+.order-fh .order-fh-mian .wlfs .wlfs1>#dsf {
+    margin-right: 4px;
+    position: relative;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border:1px solid #666666;
+    background-color: #cccccc;
+
+}
+/*私人司机*/
+.order-fh .order-fh-mian .wlfs .wlfs1>#sr {
+    margin-right: 4px;
+
+    position: relative;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border:1px solid #666666;
+    background-color: #f2f2f2;
+}
+.order-fh .order-fh-mian .wlfs .wlfs1>button{
+    top: 0px;
+    left: -2px;
+    cursor: auto;
+}
+.order-fh .order-fh-mian .wlxx input {
+    border:1px solid #DCDCDC;
+    background-color: #f2f2f2;
+}
+
+/**/
+.order-fh .order-fh-mian .fhpz .fhpz-img {
+    width: 86px;
+    height: 86px;
+    background-color: #f2f2f2;
+    border:1px solid #DCDCDC;
+    color: #999;
+    font-size: 12px;
+    line-height: 86px;
+    text-align: center;
+}
+
+/*商品总金额*/
+.order-mian-spxx > .spxx-list .zje {
+    text-align: right;
+    padding: 20px 0px 14px 0px;
+    font-size:12px;
+}
+.order-mian-spxx > .spxx-list .zje>strong{
+    color: #333;
+}
+/*!*商品总金额类名*!*/
+/*.order-mian-spxx > .spxx-list .zje>strong.zjecur{*/
+    /*color: #999999;*/
+    /*text-decoration:line-through*/
+/*}*/
+/*!*供应商改价*!*/
+/*.order-mian-spxx > .spxx-list .gj {*/
+    /*text-align: right;*/
+    /*padding: 0px 0px 14px 0px;*/
+    /*font-size:12px;*/
+    /*color: #ff7800;*/
+/*}*/
+/*.order-mian-spxx > .spxx-list .gj>strong{*/
+    /*color: #333;*/
+/*}*/
+/*运费*/
+.order-mian-spxx > .spxx-list .yf {
+    text-align: right;
+    padding: 0px 0px 19px 0px;
+    font-size:12px;
+}
+.order-mian-spxx > .spxx-list .yf>strong{
+    color: #333;
+}
+/*已付*/
+.order-mian-spxx > .spxx-list .yf2{
+    text-align: right;
+    padding: 0px 0px 20px 0px;
+    font-size:12px;
+}
+.order-mian-spxx > .spxx-list .yf2>strong{
+    font-size:14px;
+    color: #ff0000;
+}
+.order-mian-spxx > .spxx-list .yf2>i{
+    font-size:16px;
+}
+
+/*发货信息*/
+.order-fh{
+    margin-top: 20px;
+    position: relative;
+}
+.order-fh> p {
+    font-size: 16px;
+    color: #666666;
+}
+.order-fh .order-fh-mian{
+    width: 1118px;
+    height: 100%;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    padding: 20px 40px 30px 40px;
+}
+.order-fh .order-fh-mian>.fhfs{
+    color: #666666;
+    font-size: 14px;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+.order-fh .order-fh-mian .wlfs>div{
+    display: inline-block;
+}
+.order-fh .order-fh-mian .wlfs .wlfs1{
+    margin-right: 30px;
+    color: #666;
+}
+.order-fh .order-fh-mian .wlfs .wlfs1>input{
+    margin-right: 4px;
+    top:-3px;
+    left:-2px;
+    position: relative;
+}
+.order-fh .order-fh-mian .wlxx{
+    width: 1100px;
+    height: 72px;
+    background-color: #f9f9f9;
+    margin-top: 20px;
+    padding: 20px 0px 20px 20px;
+    color: #333;
+    font-size:12px;
+}
+.order-fh .order-fh-mian .wlxx .p1{
+    margin-bottom: 20px;
+    margin-right: 36px;
+    display: inline-block;
+}
+.order-fh .order-fh-mian .wlxx label{
+    margin-right: 15px;
+}
+.order-fh .order-fh-mian .wlxx input{
+    width: 246px;
+    height: 20px;
+}
+/*发货凭证*/
+.order-fh .order-fh-mian .fhpz{
+    margin-top: 20px;
+    border-top:1px solid #ccc;
+}
+.order-fh .order-fh-mian .fhpz>p{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size:14px;
+    color: #666;
+}
+.order-fh .order-fh-mian .fhpz>.lr{
+    margin-top: 20px;
+    font-size:12px;
+    color: #999;
+}
+.order-fh-mian .fh-btn{
+    width: 150px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+    color: #fff;
+    border-radius: 2px;
+    background-color: #ec1818;
+    border:none;
+    font-size:20px;
+    font-weight:bold;
+    
+}
+/*确认发货填充颜色*/
+.order-fh-mian .fh-btn {
+    background-color: #ccc;
+    cursor: auto;
+}
+/*确认发货弹窗*/
+.qrA-body{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .2);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#33000000, endColorstr=#33000000);
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.qrA {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -92px;
+    margin-left: -150px;
+    width: 300px;
+    height: 195px;
+    background-color: #fff;
+    line-height: 130px;
+    text-align: center;
+}
+
+.qrb {
+    width: 80px;
+    height: 26px;
+    color: #fff;
+    background-color: #2B99CD;
+    border: none;
+    position: absolute;
+    bottom: 25px;
+    left: 108px;
+}
+

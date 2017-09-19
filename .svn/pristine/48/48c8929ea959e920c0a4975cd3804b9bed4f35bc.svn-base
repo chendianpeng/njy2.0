@@ -1,0 +1,200 @@
+<div>
+    <style>
+    /*menu*/
+
+    .menu_bg {
+        background-color: #fff;
+        border-bottom: 1px solid #eee;
+    }
+
+    .menu {
+        height: 96px;
+    }
+
+    .menu .logo {
+        height: 96px;
+        line-height: 96px;
+        display: inline-block;
+        font-size: 30px;
+    }
+    .menu .logo:before {
+        content: "";
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .menu .logo img {
+        cursor: pointer;
+        vertical-align: middle;
+        margin-right: 19px;
+        margin-top:-10px;
+    }
+
+
+    .menu .logo span {
+        color: #333;
+        padding-left: 16px;
+        border-left: 1px solid #ccc;
+        font-size: 24px;
+        height:30px;
+        line-height: 1;
+        vertical-align: middle;
+    }
+
+    .menu .logo a {
+        margin-top: 15px;
+        display: inline-block;
+    }
+
+
+    .menu .select_btn {
+        width: 100px;
+        border: 1px solid #F1F1F1;
+        background-color: #F1F1F1;
+        height: 36px;
+        text-align: center;
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 20px;
+    }
+
+    .menu .select_btn:hover {
+        cursor: pointer;
+        border: 1px solid #dedede;
+        background-color: #ededed;
+    }
+
+    .menu .platformName {
+        border-left: 1px solid #ddd;
+        padding: 10px 0px 10px 20px;
+        font-size: 24px;
+    }
+
+    .menu .arrow_down {
+        margin-left: 6px;
+    }
+
+    .menu .search {
+        float: left;
+    }
+
+    .menu_list {
+        background-color: #589bf6;
+        font-size: 16px;
+        height: 45px;
+        line-height: 45px;
+        font-size: 0;
+    }
+
+    .menu_list a {
+        color: #fff;
+        display: inline-block;
+        padding: 0px 25px;
+        font-size: 16px;
+    }
+
+    .menu_list a:hover {
+        background: #538aef !important;
+        color: #fff !important;
+    }
+
+    .menu_list a:visited {
+        color: #fff;
+    }
+
+    .menu_list .select {
+        background-color: #427eeb;
+    }
+
+    .menu .search {
+        margin-top: 25px;
+        float: right;
+    }
+
+    .menu .search_box {
+        height: 40px;
+        width: 430px;
+        background-color: #fff;
+        border: 1px solid #0984c0;
+    }
+
+    .menu .search_btn {
+        background-color: #2c99cd;
+        color: #fff;
+        word-spacing: 2em;
+        font-size: 14px;
+        width: 90px;
+        height: 40px;
+        border: none;
+        display: inline-block;
+        line-height: 40px;
+        text-align: center;
+        float: right;
+    }
+
+    .menu .search_btn:hover {
+        color: #fff !important;
+    }
+
+    .menu .search_box .input {
+        border: none;
+        width: 340px;
+        height: 40px;
+        line-height: 40px;
+        padding: 0;
+        outline: none;
+        text-indent: 1em;
+    }
+
+    .menu .select {
+        background: #427eeb;
+        color: #fff;
+    }
+
+    .menu .backBox {
+        float: right;
+        margin-top: 38px;
+        cursor: pointer;
+        margin-right:24px;
+        font-size:16px;
+        color:#999;
+    }
+
+    .menu .backBox .icon {
+        background-image: url(/img/back.png);
+        display: inline-block;
+        width: 20px;
+        height: 16px;
+        margin-right:9px;
+        vertical-align: middle;
+        margin-top: -2px;
+    }
+    .dir-step{
+      float:right;
+      margin-right:19px;
+    }
+
+
+    </style>
+    <div class="full menu_bg">
+        <div class="w1200 menu">
+            <div class="logo">
+                <img src="./images/njy-logo.png" ng-click="goHomePage" /><span ng-if="!!title">{{title}}</span>
+            </div>
+            <div ng-if="right=='search'" class="search">
+                <div class="search_box">
+                    <input type="text" ng-model="kw" class="input" placeholder="输入想搜索的商品">
+                    <a href={{frontHost}}product_list.html?kw={{kw}} target='_blank' class="search_btn">搜索</a>
+                </div>
+            </div>
+            <div ng-if="right=='backToIndex'" class="backBox" ng-click="goHomePage">
+                <span class="icon"></span><span>返回首页</span>
+            </div>
+            <div ng-if="right=='step'" class="dir-step">
+                <div njy-step></div>
+            </div>
+        </div>
+    </div>
+</div>

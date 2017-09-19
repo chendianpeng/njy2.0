@@ -1,0 +1,66 @@
+.commodity{
+    margin:20px auto 30px auto;
+}
+.commodity .item{
+    height: 383px;
+    display: inline-block;
+    margin:0 41px 20px 0;
+    border:1px solid #fff;
+    float:left;
+    cursor: pointer;
+}
+.commodity .item5{
+    margin-right:0 !important;
+}
+.commodity .item:hover{
+    border:1px solid #dddddd;
+}
+.commodity .item .info_box{
+    padding:20px 16px 0 16px;
+    font-size: 12px;
+    width: 173px;
+}
+.commodity .item p{
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 15px;
+}
+.commodity .item .red{
+    color:#e00b0b;
+    font-size: 20px;
+}
+.commodity .item  .desc{
+    color:#666;
+    line-height: 20px;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    width: 173px;
+    height: 38px;
+}
+.commodity .item  .info{
+    color:#999;
+    margin-bottom: 12px;
+}
+.commodity .item  .info .time{
+    float: right;
+}
+.commodity .item .location{
+    color:#666;
+}
+.commodity .item .location .icon{
+    background: url('../../res/img/list_icon.png') no-repeat;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    vertical-align: sub;
+
+}
+.commodity .item .location .name{
+    color:#0984c0;
+    margin-bottom: 10px;
+    display: block;
+
+}

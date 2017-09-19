@@ -1,0 +1,106 @@
+<div class="w1200 contain-bal">
+    <a href="#" class="goBack">< 返回购物车</a>
+    <!--收货信息-->
+    <div class="rec-inf">
+        <p class="inf-p1">收货信息 <a href="#" ng-if="haveAddr">新增收货地址</a></p>
+        <p ng-if="!haveAddr" class="inf-p2">暂无可用地址，请<a href="#">新增收货地址</a></p>
+        <div ng-if="!haveAddr" class="new-rec">
+            <p>新增收货地址</p>
+            <ul>
+                <li>
+                    <label for="recName">
+                        *收货人
+                    </label>
+                    <input id="recName" type="text">
+                </li>
+                <li>
+                    <label for="phone">
+                        *联系电话
+                    </label>
+                    <input id="phone" type="text">
+                </li>
+                <li>
+                    <label for="postalCode">
+                        邮政编码
+                    </label>
+                    <input id="postalCode" type="text">
+                </li>
+            </ul>
+            <ul>
+
+            </ul>
+        </div>
+        <div class="rec-cho">
+            <ul>
+                <li ng-class="{'show':list.checked}" ng-repeat="(key,list) in contentList">
+                    <b ng-if="list.checked" class="bg-f0">寄送至</b>
+                    <input ng-click="change(key)" ng-checked="list.checked" name="show" type="radio">
+                    <span>
+                        <span>{{list.receiveName}}</span>
+                        <span>{{list.number}}</span>
+                        <span>{{list.province}}</span>
+                        <span>{{list.city}}</span>
+                        <span>{{list.country}}</span>
+                        <span>{{list.address}}</span>
+                        <span>邮政编码 {{list.postalCode}}</span>
+                        <span ng-show="list.status" class="bg-f0">默认地址</span>
+                        <a ng-click='delAddr(list.id,$event,key)' href="#">删除</a>
+                        <a href="#">修改</a>
+                        <a ng-click='defaultAddr(list.id,$event,key)' ng-if="!list.status" href="#">设为默认地址</a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--//订单信息-->
+    <div class="ord-inf" ng-repeat="(key,list) in ordList">
+        <p class="p1">订单{{key+1}}</p>
+        <p class="p2">供应商：{{list.supplierName}}</p>
+        <ul>
+            <li class="bor-bot">
+                <span class="sp1">商品信息</span>
+                <span class="sp2">单价/规格</span>
+                <span class="sp3">数量</span>
+                <span class="sp4">小计</span>
+            </li>
+            <li class="products" ng-repeat="li in list.carGoods">
+                <span class="sp1"><img src="img/images/shopcart_01.png" alt="">
+                <span class="sp5">{{li.goodsName}} </span>
+                </span>
+                <span class="sp2"><b>￥{{li.price| number : 2}}元</b>/斤</span>
+                <span class="sp3">{{li.amount}}</span>
+                <span class="sp4"><b class="red">￥{{li.xj}}</b></span>
+            </li>
+            <li class="last">
+                <span class="mid">给供应商留言：</span>
+                <textarea ng-model="list.message" class="text" placeholder="可以告诉供应商您的特殊要求（选填）" ></textarea>
+                <div class="fl-rt">
+                    <p>商品总金额（不含运费）：<b class="red">￥{{total[key]| number : 2}}</b></p>
+                    <span>注：运费在提交订单后由供应商确认</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="sub-ord">
+        <ul>
+            <li ng-repeat="(key,list) in ordList">
+                <span>运费（含杂费）：待确定</span>
+                <span>商品总金额：<span class="bg-red">￥{{total[key]| number : 2}}</span> </span>
+                <span>订单{{key+1}}</span>
+            </li>
+            <li ng-show="haveAddr" class="li-last">
+                <span>邮政编码 {{lastAddr.postalCode}}</span>
+                <span>收货人：{{lastAddr.receiveName
+}}   {{lastAddr.number}}</span>
+                <span>寄送至：{{lastAddr.province}} {{lastAddr.city}} {{lastAddr.country}} {{lastAddr.address}}</span>
+            </li>
+            <li ng-show="!haveAddr" class="li-last-no">
+                <span>暂无可用地址</span>
+            </li>
+        </ul>
+        <p class="sub" ng-click="haveAddr?saveOrder():''">提交订单</p>
+        <span class="mid">注：运费和杂费需要提交订单后由供应商确认</span>
+    </div>
+</div>
+
+

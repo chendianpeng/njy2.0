@@ -1,0 +1,42 @@
+.menu_bg{
+    background-color: #fff;
+}
+.menu{
+    height:90px;
+}
+.menu .logo{
+    height: 90px;
+    line-height: 90px;
+    display: inline-block;
+    font-size: 30px;
+}
+.menu .logo img{
+	cursor:pointer;
+}
+.menu .logo strong{
+    margin-right: 10px;
+}
+.menu .logo span{
+    color: #010101;
+	padding-left:18px;
+	border-left:1px solid #ccc;
+    font-size: 20px;
+}
+.menu .logo img{
+    vertical-align: middle;
+    margin-bottom: 5px;
+    margin-right: 20px;
+}
+.menu .backBox{
+	float: right;
+    margin-top: 35px;
+    cursor: pointer;
+}
+.menu .backBox .icon{
+	background-image : url(../img/back.png);
+	display: inline-block;
+    width: 20px;
+    height: 16px;
+    margin-right: 5px;
+	vertical-align: top;
+}

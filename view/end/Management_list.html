@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<!--[if IE 8]>         <html xmlns:ng="http://angularjs.org" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html xmlns:ng="http://angularjs.org" class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>农家易管理订单分配</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <base href="/">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/banner.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/style_end/public.css">
+    <link rel="stylesheet" href="./css/style_end/layout.css">
+    <link rel="stylesheet" href="./css/style_end/style.css">
+
+
+</head>
+<body ng-app="njyApp" ng-cloak>
+<div class="Top">
+<p>农加易管理系统</p>
+    <div class="Right_top">
+        <span>您好，admin！</span>
+        <img src="./images/img_end/back.gif" style="height:18px; width:18px" /><span>退出</span>
+        
+    </div>
+</div>
+<div class="Left_list">
+<div class="list_main">
+
+    <ul>
+        <li><img src="./images/img_end/ri2.gif" style="height: 16px;width: 18px;" />订单管理<span>&nu;</span></li>
+        <li>订单分配<span>&nu;</span></li>
+        <li>订单处理<span>&nu;</span></li>
+    </ul>
+</div>
+
+</div>
+<div class="list_foot">
+    <div class="list"><img src="./images/img_end/zoom.gif" style="height: 17px;width: 18px;"/><p>审核管理</p><span>&nu;</span></div>
+</div>
+<div class="list_about">
+    <div class="nav_top">
+        <span>您的位置：</span><span>订单管理 > 订单分配</span>
+
+    </div>
+    <hr style="width: 1648px;margin-left: 12px">
+    <div class="means">
+        分配状态：<input type="text" class="square" placeholder="&nbsp;&nbsp;全部" >
+        <input type="text" class="square" placeholder="&nbsp;输入商家名称或业务员账号" ng-model="id">
+        <input type="button" name="button" value="搜索" class="btn2" ng-class="">
+
+
+        <!--<button  ng-class="{btncur:tabType=='taball'}" ng-click="sclick()">搜索</button>-->
+
+
+
+    </div>
+    <div class="Tb" ng-controller="DomeController">
+        <table class="table table-striped">
+        <thead>
+        <tr>
+            <th ng-click="col='orderNo';desc=!desc">订单编号</th>
+            <th ng-click="col='Name';desc=!desc">采购商</th>
+            <th ng-click="col='gy';desc=!desc">供应商</th>
+            <th ng-click="col='time';desc=!desc">创建时间</th>
+            <th ng-click="col='fen';desc=!desc" >分配状态</th>
+            <th ng-click="col='ye';desc=!desc" >业务员</th>
+            <th ng-click="col='chao';desc=!desc">操作</th>
+        </tr>
+        </thead>
+            <tbody>
+            <tr ng-repeat="(index,x) in  arry">
+                <td>{{x.orderNo}}</td>
+                <td>{{x.purchaserName}}</td>
+                <td>{{x.supplierName}}</td>
+                <td>{{x.createDate}}</td>
+                <td>{{x.assignStatus}}</td>
+                <td>{{x.assignUser}}</td>
+                <td>{{x.status}}</td>
+            </tr>
+        </table>
+
+        <!--分页-->
+
+        <!--* 分页指令，参数不能为空-->
+        <!--* current-page:当前页-->
+        <!--* total-page:总页数-->
+        <!--* get-list:更新列表的函数方法，函数可改，须带上一个page参数（表示选中页）-->
+        <div njy-pager current-page="{{mapage}}" total-page="{{sumPerPage}}" get-list="getListByPage(page)"></div>
+        </div>
+
+
+
+    </div>
+
+</div>
+</div>
+
+<script src="./js/vendor/modernizr-2.6.2.min.js"></script>
+<script src="./js/vendor/jquery-1.11.1.min.js"></script>
+<script src="./js/vendor/jquery.placeholder.js"></script>
+<script src="./js/lib/angular-1.2.32/angular.js"></script>
+<script src="./js/lib/angular-ui-router-0.2.10/angular-ui-router.js"></script>
+<script src="./js/util.js"></script>
+<script src="./js/config.js"></script>
+<script src="./js/directive/directives.js"></script>
+<script src="./js/model/model.js"></script>
+<script src="./js/index.js"></script>
+<script src="./js/end/manage.js"></script>
+</body>
+</html>

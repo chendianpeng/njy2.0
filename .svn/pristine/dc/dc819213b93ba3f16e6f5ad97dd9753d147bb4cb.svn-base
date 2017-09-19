@@ -1,0 +1,1 @@
+ipconfig&&npm run server

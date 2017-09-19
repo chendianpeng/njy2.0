@@ -1,0 +1,250 @@
+// Avoid `console` errors in browsers that lack a console.
+(function() {
+  var method;
+  var noop = function() {};
+  var methods = [
+    'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
+    'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
+    'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
+    'timeStamp', 'trace', 'warn'
+  ];
+  var length = methods.length;
+  var console = (window.console = window.console || {});
+
+  while (length--) {
+    method = methods[length];
+
+    // Only stub undefined methods.
+    if (!console[method]) {
+      console[method] = noop;
+    }
+  }
+}());
+
+function setCookie(name, value, domain) {
+  var Days = 0.5;
+  var exp = new Date();
+  exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+  document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString() +
+    (domain ? (";domain=" + domain) : "") + ";path=/";
+}
+
+function getCookie(name) {
+  var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+  if (arr = document.cookie.match(reg)) {
+    return unescape(arr[2]);
+  } else {
+    return "";
+  }
+}
+
+
+angular.module("njy-util", [])
+  /**
+   * cookie
+   */
+  .factory("njyCookie", [function() {
+    function setCookie(name, value, domain) {
+      var Days = 0.5;
+      var exp = new Date();
+      exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+      document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString() +
+        (domain ? (";domain=" + domain) : "") + ";path=/";
+    }
+
+    function getCookie(name) {
+      var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+      if (arr = document.cookie.match(reg)) {
+        return unescape(arr[2]);
+      } else {
+        return "";
+      }
+    }
+
+    return {
+      setCookie: setCookie,
+      getCookie: getCookie
+    };
+  }])
+  /**
+  * 弹出框,opt参数参考各config属性
+  * 用法：
+  * njyAlert.right(opt)
+  * njyAlert.worng(opt)
+  * njyAlert.comfirm(opt)
+  * njyAlert.tips(txt)
+  * e.g.
+  *   njyAlert.tips("页码输入不合法，输入的数必须大于0,小于等于");
+  *
+  *  njyAlert.right({
+  *    mask: true, //遮罩层
+  *    info: "提交成功！", //提示文本
+  *    timeout: 3, //关闭时间
+  *    name: "首页", //关闭后返回页面title
+  *    a_name: "立即返回",
+  *    href: "" //关闭后返回地址,为空不跳转
+  *  });
+  *
+  *  njyAlert.worng({
+  *    mask: true,
+  *    info: "表单填写错误<br/>请检查表单中提示的错误信息",
+  *    btn: "确 定" //按钮名称
+  *  });
+  *
+  *  njyAlert.comfirm({
+  *    mask: true,
+  *    info: "表单填写完成，确认提交？",
+  *    btns: [{
+  *      "name": "确 定", //按钮名称
+  *      "fn": function() {
+  *        //用户点击此按钮时调用的方法
+  *      }
+  *    }, {
+  *      "name": "取 消",
+  *      "fn": function() {}
+  *    }]
+  *  })
+  * }
+  */
+  .factory("njyAlert", [function() {
+    var el, type, html = '',
+      $$ = angular.element;
+
+    function createAlert() {
+      //有dom则不生成dom
+      el = $$("#njy-alert");
+      if (el.size() == 0) {
+        el = $$('<div id="njy-alert" style="display:none;"></div>');
+        $$("body").append(el);
+      }
+    }
+
+    function createHtml(opt, btns) {
+      var h = opt.mask ? '<div class="alert-mask"></div>' : '';
+      h += '<div class="alert-content">' +
+        '<div class="alert-info">' +
+        '<div class="alert-' + type + '"><span>' + opt.info +
+        '</span></div>' +
+        '</div>' +
+        btns +
+        '</div>';
+      return h;
+    }
+
+    function right(opt) {
+      var _timer;
+      var config = {
+        mask: true, //遮罩层
+        info: "提交成功！", //提示文本
+        timeout: 3, //关闭时间
+        name: "首页", //关闭后返回页面title
+        a_name: "立即返回",
+        href: "" //关闭后返回地址,为空不跳转
+      };
+      type = "right";
+      angular.extend(config, opt);
+      var _tips = '<div class="alert-tips">' +
+        '<span class="alert-timer">' + config.timeout +
+        's</span> 后返回<span>' + config.name + '</span>' +
+        '<a class="alert-reback" href="javascript:;">' + config.a_name +
+        '</a>' +
+        '</div>';
+      var h = createHtml(config, _tips);
+      createAlert();
+      el.html(h).fadeIn().find('.alert-reback').one("click", function() {
+        clearInterval(_timer);
+        el.hide();
+        if (config.href) location.href = config.href;
+      });
+      _timer = setInterval(function() {
+        config.timeout--;
+        if (config.timeout < 1) {
+          el.find('.alert-reback').trigger("click");
+        } else {
+          el.find(".alert-timer").text(config.timeout + 's');
+        }
+      }, 1000);
+    }
+
+    function worng(opt) {
+      var config = {
+        mask: true,
+        info: "表单填写错误<br/>请检查表单中提示的错误信息",
+        btn: "确 定" //按钮名称
+      };
+      type = "worng";
+      angular.extend(config, opt);
+      var _btn = '<div class="alert-btns">' +
+        '<a class="alert-btn-ok" style="min-width:170px" href="javascript:;">' +
+        config.btn + '</a>' +
+        '</div>';
+      var h = createHtml(config, _btn);
+      createAlert();
+      el.html(h).show().find('.alert-btn-ok').one("click", function() {
+        el.hide();
+      });
+    }
+
+    function comfirm(opt) {
+      var config = {
+        mask: true,
+        info: "表单填写完成，确认提交？",
+        btns: [{
+          "name": "确 定", //按钮名称
+          "fn": function() {
+            //用户点击此按钮时调用的方法
+          }
+        }, {
+          "name": "取 消",
+          "fn": function() {}
+        }]
+      };
+      type = "comfirm";
+      angular.extend(config, opt);
+      var _btns = '<div class="alert-btns">' +
+        '<a class="alert-btn-ok" href="javascript:;">' + config.btns[0].name +
+        '</a>' +
+        '<a class="alert-btn-cn" href="javascript:;">' + config.btns[1].name +
+        '</a>' +
+        '</div>';
+      var h = createHtml(config, _btns);
+      createAlert();
+      el.html(h).show().find('.alert-btns').one("click", function(e) {
+        if (e.target.className === "alert-btn-ok") {
+          el.hide();
+          config.btns[0].fn();
+        } else if (e.target.className === "alert-btn-cn") {
+          el.hide();
+          config.btns[1].fn();
+        }
+      });
+    }
+
+    function tips(txt, callback) {
+      var config = {
+        mask: true,
+        info: txt,
+        btn: "确 定" //按钮名称
+      };
+      type = "tips";
+      var _btn = '<div class="alert-btns">' +
+        '<a class="alert-btn-ok" style="min-width:170px" href="javascript:;">' +
+        config.btn + '</a>' +
+        '</div>';
+      var h = createHtml(config, _btn);
+      createAlert();
+      el.html(h).show().find('.alert-btn-ok').one("click", function() {
+        el.hide();
+        if (typeof(callback) == "function") {
+          callback();
+        }
+      });
+    }
+
+    return {
+      right: right,
+      worng: worng,
+      comfirm: comfirm,
+      tips: tips
+    };
+  }])

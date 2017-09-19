@@ -1,0 +1,40 @@
+var app = angular.module('njyApp',["njy-directive", "njy-model", "njy-config"])
+app.controller('DomeController',['$scope', 'management',function ($scope,management) {
+    $scope.arry=[];
+    $scope.names=null;
+
+    management.Allocation({
+        "data": { "status": 0,
+                  "name": ""
+                            },
+
+
+        "pageNumber": 1,
+        "pageSize": 10
+
+    }).then(function successCallback(response) {
+        console.log('请求成功');
+        $scope.names=((response.content).content)[1];
+        $scope.arry.push($scope.names);
+        console.log($scope.arry);
+
+
+    }), function errorCallback(response) {
+        console.log('请求失败')
+
+    }
+
+
+
+
+
+}])
+
+
+
+
+
+app.controller('indexController',['$scope', '$http',function ($scope,$http) {
+
+
+}])

@@ -1,0 +1,240 @@
+/*卖家处理退款*/
+body {
+    background-color: #ffffff;
+    position: relative;
+}
+div.menu_bg {
+    border-bottom:none;
+}
+.mian {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 30px;
+}
+
+.mian-content {
+    width: 1200px;
+    height: 100%;
+}
+
+/*进度条*/
+.nav-arrow {
+    width: 1185px;
+    height: 40px;
+    background-color: #bbb;
+    margin-bottom: 20px;
+    color: #fff;
+    font-size:14px;
+
+
+}
+
+.nav-arrow-item:after,
+.nav-arrow-item:before {
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 20px solid #bbb;
+    position: absolute;
+    right: -5px;
+    top: 0;
+    margin-right: -15px;
+    z-index: 4;
+}
+
+.nav-arrow-item:before {
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-left: 30px solid #fff;
+    top: -11px;
+    margin-right: -26px;
+    z-index: 3;
+}
+
+.nav-arrow-item {
+    width: 395px;
+    line-height: 40px;
+    float: left;
+    text-align: center;
+    position: relative;
+
+}
+.nav-arrow-item>p>i{
+    position: relative;
+    top: -1px;
+    left: 7px;
+}
+
+.nav-arrow-item.on {
+    background: #2c99cd;
+}
+
+.nav-arrow-item.on:after {
+    border-left-color: #2c99cd;
+}
+
+.nav-arrow-item:last-child:before {
+    border-left-color: transparent;
+}
+
+
+
+.nav-ct{
+    font-size:12px;
+}
+/*退款编号*/
+.nav-ct .nav-ct-tkbh {
+    color: #666;
+    font-size: 16px;
+    padding-bottom: 10px;
+}
+
+.nav-ct .nav-ct-bottom {
+    width: 1198px;
+    border: 1px solid #ccc;
+}
+
+.nav-ct .nav-ct-bottom .nav-ct-b-l {
+    float: left;
+    width: 839px;
+    border-right: 1px solid #ccc;
+    height: 100%;
+    padding: 20px 40px 0px 40px;
+}
+
+.m-b20{
+    padding-bottom: 20px;
+    color: #333;
+}
+.m-r14{
+    margin-right: 14px;
+}
+
+.nav-ct .nav-ct-bottom .nav-ct-b-l .content-div {
+    width: 839px;
+    border-top: 1px solid #ccc;
+
+}
+
+.nav-ct .nav-ct-bottom .nav-ct-b-l .content-div .tksp {
+    min-height: 20px;
+    padding: 20px 0px 20px 0px;
+}
+.nav-ct .nav-ct-bottom .nav-ct-b-l .content-div .tksp li{
+    height: 80px;
+    float: left;
+}
+.nav-ct .nav-ct-bottom .nav-ct-b-l .content-div .tksp .tksp-1{
+    color: #666;
+    padding-top: 10px;
+
+}
+.nav-ct .nav-ct-bottom .nav-ct-b-l .content-div .tksp .tksp-2{
+    width: 80px;
+    margin-right: 15px;
+}
+.nav-ct .nav-ct-bottom .nav-ct-b-l .content-div .tksp .tksp-2>img{
+    width: 100%;
+    height: 100%;
+}
+.nav-ct .nav-ct-bottom .nav-ct-b-l .content-div .tksp .tksp-3{
+    font-size: 12px;
+    color: #333;
+    padding-top: 10px;
+    line-height: 20px;
+}
+.nav-ct .nav-ct-bottom .nav-ct-b-l .content-div .sctp{
+    padding-bottom: 20px;
+}
+.nav-ct .nav-ct-bottom .nav-ct-b-l .content-div .sctp>span{
+    color: #666;
+}
+.nav-ct .nav-ct-bottom .nav-ct-b-l .content-div .jjyy{
+    padding-bottom: 20px;
+    color: #333;
+    height: 94px;
+    border-bottom: 1px solid #ccc;
+    
+}
+.nav-ct .nav-ct-bottom .nav-ct-b-l .content-div .jjyy>span{
+    display: inline-block;
+    vertical-align: top;
+    line-height: 10px;
+
+}
+.wzText {
+    width:608px;
+    height:72px;
+    resize:none;
+    padding: 10px 10px;
+    font-size:12px;
+    color: #333;
+}
+.btn-tj{
+    width: 150px;
+    height: 45px;
+    color: #fff;
+    font-size:20px;
+    line-height: 45px;
+    background-color: #2c99cd;
+    text-align: center;
+    border:none;
+    margin-top: 20px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/*右边内容—订单详情*/
+
+.nav-ct .nav-ct-bottom .nav-ct-b-r {
+    float: right;
+    width: 278px;
+    height: 100%;
+}
+.nav-ct .nav-ct-bottom .nav-ct-b-r .ddxx{
+    border-bottom: 1px solid #cccccc;
+    width: 248px;
+    height: 34px;
+    padding:20px 0px 0px 30px;
+    background-color: #f9f9f9;
+    color: #666;
+    font-size:14px;
+}
+.nav-ct .nav-ct-bottom .nav-ct-b-r>div{
+    padding: 20px 30px 0px 30px;
+    font-size:12px;
+}
+.nav-ct .nav-ct-bottom .nav-ct-b-r>div>.h28{
+    height: 28px;
+}
+.nav-ct .nav-ct-bottom .nav-ct-b-r>div>.h28>span{
+    width: 85px;
+    display: inline-block;
+    color: #666;
+    min-height: 28px;
+    height: 100%;
+}
+.nav-ct .nav-ct-bottom .nav-ct-b-r>div>.h52{
+    height: 52px;
+    padding-left: 85px;
+    position: relative;
+    line-height: 18px;
+}
+.nav-ct .nav-ct-bottom .nav-ct-b-r>div>.h52>span{
+    position:absolute;
+    top:0px;
+    left:0px;
+}
+
+/*商品总价修改后样式*/
+.spzj-cur{
+    color: #999;
+    text-decoration: line-through;
+}
+.nav-ct .nav-ct-bottom .nav-ct-b-r>div>.h28>.gj{
+    color: #ff7800;
+}
+

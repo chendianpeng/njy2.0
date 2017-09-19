@@ -1,0 +1,79 @@
+body {
+    background-color: #ffffff;
+    position: relative;
+}
+.content{
+    min-height: 2060px;
+    width: 1200px;
+    height: 100%;
+}
+.p18px{
+    padding-left: 18px;
+}
+.p50px{
+    padding-left: 50px;
+}
+
+/*左边内容*/
+.content-l{
+    width: 205px;
+    min-height: 2058px;
+    height: 100%;
+    background-color: #f1f1f1;
+    float: left;
+    border-top:1px solid #cccccc;
+    border-bottom:1px solid #cccccc;
+    border-left:1px solid #cccccc;
+}
+.njygl{
+    height: 59px;
+    line-height:58px;
+    font-weight: bolder;
+
+}
+/*供应管理*/
+.gygl{
+    height: 55px;
+    line-height: 50px;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+
+}
+.imgs{
+    position: absolute;
+    top: 15px;
+    left:18px;
+
+}
+.gy{
+    background-color: #fff;
+    border-left: 4px solid #2c99cd;
+    height: 100%;
+}
+.m-t-b20{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.m-b20{
+    margin-bottom: 20px;
+}
+.gy>li>a,.ywygl li a,.cggl li a{
+    color: #7d7d7d;
+}
+.gy>li>a.cura{
+    color: #2c99cd;
+}
+/*采购管理*/
+.cg{
+    border-left:0px;
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #ccc;
+}
+.cggl{
+    border-top:1px solid #ccc ;
+    border-bottom: 1px solid #ccc;
+
+
+}
+
+

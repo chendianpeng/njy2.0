@@ -1,0 +1,34 @@
+var app = angular.module('njyApp',["njy-directive", "njy-model", "njy-config"])
+app.controller('DomeController',['$scope', 'management',function ($scope,management) {
+
+
+    management.Allocation({
+        "data": { "status": 0,
+            "name": ""},
+
+
+        "pageNumber": 1,
+        "pageSize": 12
+
+    }).then(function successCallback(response) {
+        console.log('请求成功')
+
+    }), function errorCallback(response) {
+        console.log('请求失败')
+
+    }
+
+
+
+
+
+}])
+
+
+
+
+
+app.controller('indexController',['$scope', '$http',function ($scope,$http) {
+
+
+}])

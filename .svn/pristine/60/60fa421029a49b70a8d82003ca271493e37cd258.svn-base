@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="frontApp" ng-controller="all">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <title>all</title>
+    <base href="/njy_2/">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="./css/common.css"/>
+    <link rel="stylesheet" href="./css/banner.css"/>
+    <link rel="stylesheet" href="./css/shopcart.css"/>
+    <link rel="stylesheet" href="./css/xqym.css">
+    <link rel="stylesheet" href="./css/balance.css"/>
+    <script src="./js/vendor/modernizr-2.6.2.min.js"></script>
+    <script src="./js/vendor/jquery-1.11.1.min.js"></script>
+    <script src="./js/vendor/jquery.placeholder.js"></script>
+    <script src="./js/lib/angular-1.2.32/angular.js"></script>
+    <script src="./js/lib/angular-ui-router-0.2.10/angular-ui-router.js"></script>
+    <script src="./js/util.js"></script>
+    <script src="./js/config.js"></script>
+    <script src="./js/directive/directives.js"></script>
+    <script src="./js/model/model.js"></script>
+</head>
+<body>
+<div ui-view></div>
+<script>
+    var app = angular.module('frontApp', ["njy-directive", "njy-model", "njy-config"]);
+    app.config(
+        ['$stateProvider','$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
+            $stateProvider
+                .state('xqym', {
+                    url: '/xqym',
+                    templateUrl: 'view/front/xqym.html',
+                    controller:'xqym'
+                })
+                .state('shopcart', {
+                    url: '/shopcart',
+                    templateUrl: 'view/front/shopcart.html',
+                    controller:'shopcart'
+                })
+                .state('balance', {
+                    url: '/balance',
+                    templateUrl: 'view/front/balance.html',
+                    controller:'balance'
+                })
+            $urlRouterProvider.otherwise('/xqym')
+        }]
+    )
+    app.controller('all',['$scope',function ($scope) {
+
+    }])
+    //商品详情页
+    app.filter('point_date', function() {
+        return function(d) {
+            d = "" + d;
+            return d.replace(/\-/g, ".");
+        }
+    });
+    app.controller('xqym',['$scope','$state',function ($scope,$state) {
+        $scope.imgShow='img/images/sm_tom01.png';
+        $scope.litImgs=[
+            'img/images/sm_tom01.png',
+            'img/images/sm_tom02.png',
+            'img/images/sm_tom03.png',
+            'img/images/sm_tom04.png',
+            'img/images/sm_tom05.png',
+            'img/images/sm_tom03.png',
+            'img/images/sm_tom01.png'
+        ];
+        $scope.isShow=[];
+
+        function isShow(index) {
+            for(var i=0;i<$scope.litImgs.length;i++){
+                if(i==index)
+                    $scope.isShow[i]=true;
+                else
+                    $scope.isShow[i]=false;
+            }
+        }
+        isShow(0);
+        //图片改变
+        $scope.imgChg=function (index) {
+            $scope.imgShow=$scope.litImgs[index];
+            isShow(index);
+        }
+        //左右点击，改变图片
+        $scope.showRange=0;
+        if($scope.litImgs.length>5)
+            $scope.canLeft=true;
+        else
+            $scope.canLeft=false;
+        $scope.canRight=false;
+        $scope.slideLeft=function (e) {
+            if($scope.litImgs.length>$scope.showRange+5){
+                $scope.showRange++;
+                $scope.canRight=true;
+            }
+            else
+                $scope.canLeft=false;
+            e.preventDefault()
+        };
+        $scope.slideRight=function (e) {
+            if($scope.showRange>0){
+                $scope.showRange--;
+                console.log($scope.showRange)
+                $scope.canLeft=true;
+            }
+            else
+                $scope.canRight=false;
+            e.preventDefault();
+        };
+        $scope.connection=false;
+        //关闭
+        $scope.close=function () {
+            $scope.connection=false;
+        }
+        //显示
+        $scope.toShow=function () {
+            $scope.connection=true;
+        }
+        //跳转到结算页面
+        $scope.toBalance=function () {
+            $state.go('balance');
+        }
+        //跳转到购物车页面
+        $scope.toShopcart=function () {
+            $state.go('shopcart');
+        }
+        $scope.content={};
+        $scope.content.title='test';
+        $scope.supportLogistics=['协助走车','走快递','走空运'];
+    }]);
+    //结算页控制器
+    app.controller('balance',['$scope','buyCar','recAddr','order','$rootScope','xj',function ($scope,$buyCart,$recAddr,$order,$rootScope,xj) {
+        $scope.haveAddr=false;
+        $scope.contentList=[];//所有的收货地址
+        $scope.ordList=$rootScope.data;//接收到的数据内容
+        $scope.lastAddr={};//最后的地址提交
+        console.log($scope.ordList)
+        $scope.total= [];
+        //数据处理
+        function handle() {
+            for (var i = 0, s = 0; i < $scope.ordList.length; i++) {
+                var sum=0;
+                $scope.ordList[i].message='';
+                for (var j = 0, k = 0; j < $scope.ordList[i].carGoods.length; j++) {
+                    var obj=$scope.ordList[i].carGoods[j];
+                    obj.price=xj.computed(obj);
+                    sum+=obj.xj;
+            }
+                $scope.total[i]=sum;
+        }
+        }
+        handle();
+        //查询所有的收货地址
+        $recAddr.allAddr().then(function success(res) {
+            console.log(res.data.content)
+            $scope.contentList=res.data.content;
+            if($scope.contentList.length>0)
+            {
+                $scope.lastAddr=$scope.contentList[0];
+                $scope.haveAddr=true;
+                for(var i=0;i<$scope.contentList.length;i++){
+                    if(i==0)
+                        $scope.contentList[i].checked=true;
+                    else
+                        $scope.contentList[i].checked=false;
+                }
+            }
+            //改变选择地址触发
+            $scope.change=function (index) {
+                for(var i=0;i<$scope.contentList.length;i++){
+                    if(i==index)
+                    {
+                        $scope.contentList[i].checked=true;
+                        $scope.lastAddr=$scope.contentList[i];
+                    }
+                    else
+                        $scope.contentList[i].checked=false;
+                }
+            }
+            //点击设置删除地址
+            $scope.delAddr=function (id,e,index) {
+                $recAddr.delAddr(id).then(function success(data) {
+                    var del=$scope.contentList.splice(index,1)[0];
+                    if($scope.contentList.length>0){
+                        if(del.checked)
+                        {
+                            $scope.contentList[0].checked=true;
+                        }
+                    }else
+                        $scope.haveAddr=false;
+                })
+                e.preventDefault();
+            }
+            //设置默认地址
+            $scope.defaultAddr=function (id,e,index) {
+                $recAddr.defaultAddr(id).then(function success(data) {
+                    console.log(data);
+                    for(var i=0;i<$scope.contentList.length;i++)
+                        $scope.contentList[i].status=false;
+                    $scope.contentList[index].status=true;
+                })
+                e.preventDefault();
+            }
+        });
+        //查询订单详情信息
+        $order.productDet().then(function success(res) {
+            console.log(res)
+            $scope.productList=res.data.OrderItemVo;
+
+        })
+        $scope.saveOrder=function () {
+            var data={};
+            data.carNo=$scope.ordList[0].carNo;
+            data.rAddrId=$scope.lastAddr.id;
+            data.supplyInfos=[];
+            for(var i=0;i<$scope.ordList.length;i++){
+                var obj={};
+                obj.supplyId=$scope.ordList[i].supplierId;
+                obj.message=$scope.ordList[i].message;
+                for(var j=0;j<$scope.ordList[i].carGoods.length;j++){
+                    obj.goodsIds[j]=$scope.ordList[i].carGoods[j].goodsId;
+                }
+                data.supplyInfos[i]=obj;
+            }
+            console.log(data);
+            $buyCart.saveOrder(data).then(function () {
+                console.log(1)
+            })
+        }
+
+    }])
+    //购物车
+    app.factory('xj', [function () {
+        return {
+            computed: function (obj) {
+                if (!obj.initialVolume1) {
+                    obj.xj = obj.amount * obj.price1;
+                    return obj.price1;
+                } else {
+                    if (obj.initialVolume2) {
+                        if (obj.amount < obj.initialVolume2)
+                        {
+                            obj.xj = obj.amount * obj.price1;
+                            return obj.price1;
+                        }
+                        else {
+                            if (obj.initialVolume3) {
+                                if (obj.amount < obj.initialVolume3)
+                                {
+                                    obj.xj = obj.amount * obj.price2;
+                                    return obj.price2;
+                                }
+                                else
+                                {
+                                    obj.xj = obj.amount * obj.price3;
+                                    return obj.price3;
+                                }
+                            }
+                            else {
+                                obj.xj = obj.amount * obj.price2;
+                                return obj.price2;
+                            }
+                        }
+                    } else {
+                        obj.xj = obj.amount * obj.price1;
+                        return obj.price1;
+                    }
+                }
+            }
+        }
+    }]);
+    app.controller('shopcart', ['$scope','$state', '$http', 'xj','buyCar','$rootScope', function ($scope,$state, $http, $xj,$buyCar,$rootScope) {
+        $buyCar.listAllGroup({
+            "goodsIds": [
+                0
+            ],
+            "isClose": 0,
+            "supplierIds": [
+                0
+            ]
+        }).then(function successCallback(response) {
+            console.log(response)
+            $scope.cartList = response.data.content;
+            $scope.carNo=$scope.cartList[0].carNo;
+            console.log($scope.cartList);
+            //判断是不是没有商品
+            if ($scope.cartList.length < 1) {
+                //商品购物车内容判断
+                $scope.have = false;
+            }
+            else {
+                $scope.have = true;
+                $scope.allCheck = true;//全选按钮是否可选
+                //接收到的数据处理函数(添加isActive以及canCheck属性)
+                function handle() {
+                    for (var i = 0, s = 0; i < $scope.cartList.length; i++) {
+                        $scope.cartList[i].isActive = false;
+                        for (var j = 0, k = 0; j < $scope.cartList[i].carGoods.length; j++) {
+                            var obj=$scope.cartList[i].carGoods[j];
+                            if(!obj.initialVolume1)
+                                obj.up=true;
+                            obj.isActive = false;
+                            obj.xj = obj.amount * obj.price1;
+                            if (!obj.isPublish) k++;
+                        }
+                        if (k != j)
+                            $scope.cartList[i].canCheck = true;
+                        else {
+                            $scope.cartList[i].canCheck = false;
+                            s++;
+                        }
+                    }
+                    if (s == i) $scope.allCheck = false;
+                    else $scope.allCheck = true;
+                }
+                handle();
+                $scope.all = false;//全选的数据状态
+                $scope.total = 0.00;//结算显示的价格
+                $scope.goodsIds=[];//结算时的货物ID
+                $scope.supplierIds=[];//结算时的供应商ID
+                $scope.haveChecked=false;//是否有勾选商品
+                //全选的判断及方法
+                function judge(n) {
+                    //判断是不是全选
+                    for (var i = 0; i < n; i++) {
+                        if (!$scope.cartList[i].isActive)break;
+                    }
+                    if (i == n) $scope.all = true;
+                    else $scope.all = false;
+                }
+                $scope.allSel = function () {
+                    $scope.all = !$scope.all;
+                    for (var i = 0; i < $scope.cartList.length; i++) {
+                        if ($scope.all)
+                            $scope.cartList[i].isActive = true;
+                        else
+                            $scope.cartList[i].isActive = false;
+                        for (var j = 0; j < $scope.cartList[i].carGoods.length; j++) {
+                            if ($scope.cartList[i].carGoods[j].isPublish) {
+                                if ($scope.all)
+                                    $scope.cartList[i].carGoods[j].isActive = true;
+                                else
+                                    $scope.cartList[i].carGoods[j].isActive = false;
+                            }
+                        }
+                    }
+                    computed();
+                }
+                //部分选择的方法及判断
+                $scope.partSel = function (index) {
+                    $scope.cartList[index].isActive = !$scope.cartList[index].isActive;
+                    for (var i = 0; i < $scope.cartList[index].carGoods.length; i++) {
+                        if ($scope.cartList[index].carGoods[i].isPublish) {
+                            if ($scope.cartList[index].isActive)
+                                $scope.cartList[index].carGoods[i].isActive = true;
+                            else {
+                                $scope.cartList[index].carGoods[i].isActive = false;
+                                $scope.all = false;
+                            }
+                        }
+                    }
+                    //判断是不是全选
+                    judge($scope.cartList.length);
+                    computed();
+                }
+                //单体选择的方法及判断
+                $scope.someSel = function (key, key1) {
+                    //记录是否全选用作比较
+                    var count = $scope.cartList[key].carGoods.length;
+                    var count1 = 0;
+                    $scope.cartList[key].carGoods[key1].isActive = !$scope.cartList[key].carGoods[key1].isActive;
+                    for (var i = 0; i < $scope.cartList[key].carGoods.length; i++) {
+                        if ($scope.cartList[key].carGoods[i].isPublish) {
+                            if ($scope.cartList[key].carGoods[i].isActive) count1++;
+                        }
+                        else {
+                            count--;
+                        }
+                    }
+                    if (count == count1) {
+                        $scope.cartList[key].isActive = true;
+                        //判断是不是全选
+                        judge($scope.cartList.length);
+                    }
+                    else {
+                        $scope.cartList[key].isActive = false;
+                        $scope.all = false;
+                    }
+                    computed();
+                }
+                //控制数量加减
+                $scope.add = function (amount, initialVolume, i, j, n, isActive, goodsId, supplierId) {
+                    $scope.cartList[i].carGoods[j].amount = parseFloat(n) + 1;
+                    var obj = $scope.cartList[i].carGoods[j];
+                    $xj.computed(obj);
+                    if (isActive) {
+                        computed();
+                    }
+                    //进行数据提交
+                    $buyCar.save([{
+                        "amount": amount,
+                        "goodsId": goodsId,
+                        "supplierId": supplierId
+                    }]).then(function () {
+
+                    })
+                }
+                $scope.red = function (amount, initialVolume, i, j, n, isActive, goodsId, supplierId) {
+                    if (amount > initialVolume) {
+                        $scope.cartList[i].carGoods[j].amount = n - 1;
+                        var obj = $scope.cartList[i].carGoods[j];
+                        $xj.computed(obj);
+                        if (isActive) {
+                            computed();
+                        }
+                        //进行数据提交
+                        $buyCar.save([{
+                            "amount": amount,
+                            "goodsId": goodsId,
+                            "supplierId": supplierId
+                        }]).then(function () {
+
+                        })
+                    }
+                }
+                //删除操作
+                $scope.remove = function (index, index1, $event, goodsId) {
+                    $buyCar.deleteByIds({
+                        "carNo": $scope.carNo,
+                        "goodsIds": [
+                            goodsId
+                        ]
+                    }).then(function success() {
+                        console.log('数据删除成功');
+                        $scope.cartList[index].carGoods.splice(index1, 1);
+                        if ($scope.cartList[index].carGoods.length == 0) $scope.cartList.splice(index, 1);
+                        if($scope.cartList.length>0)
+                            computed();
+                        else
+                            $scope.have=false;
+                    });
+                    if ($event)
+                        $event.preventDefault();
+                }
+                //删除部分商品
+                $scope.removeSome = function ($event) {
+                    var goodsId=[];
+                    for (var i = $scope.cartList.length - 1; i >= 0; i--) {
+
+                        for (var j = $scope.cartList[i].carGoods.length - 1; j >= 0; j--) {
+                            var obj=$scope.cartList[i].carGoods[j];
+                            if (obj.isPublish && obj.isActive) {
+                                goodsId.push(obj.goodsId);
+                                $scope.cartList[i].carGoods.splice(j, 1);
+                                if ($scope.cartList[i].carGoods.length == 0) $scope.cartList.splice(i, 1);
+                                computed();
+                            }
+                        }
+                    }
+                    if(!$scope.cartList.length)
+                        $scope.have=false;
+                    $buyCar.deleteByIds({
+                        "carNo": $scope.carNo,
+                        "goodsIds": [
+                            goodsId
+                        ]
+                    }).then(function () {
+                        console.log(goodsId);
+                        console.log('部分数据删除成功');
+                    })
+                    $event.preventDefault();
+                }
+                //计算总计
+                function computed() {
+                    $scope.total = 0;
+                    $scope.goodsIds=[];//结算时的货物ID
+                    $scope.supplierIds=[];//结算时的供应商ID
+                    $scope.haveChecked=false;
+                    for (var i = 0; i < $scope.cartList.length; i++) {
+                        for (var j = 0; j < $scope.cartList[i].carGoods.length; j++) {
+                            var obj = $scope.cartList[i].carGoods[j];
+                            if (obj.isPublish && obj.isActive) {
+                                $scope.haveChecked=true;
+                                $scope.goodsIds.push(obj.goodsId);
+                                $scope.supplierIds.push(obj.supplierId);
+                                $scope.total += obj.xj;
+                            }
+                        }
+                    }
+                }
+                //手动输入数量
+                $scope.inpCg = function (amount, initialVolume, i, j, isActive, goodsId, supplierId) {
+                    var obj = $scope.cartList[i].carGoods[j];
+                    if (amount < initialVolume) {
+                        obj.amount = initialVolume;
+                    }
+                    //判断小计
+                    $xj.computed(obj);
+                    if (isActive) {
+                        computed();
+                    }
+                    //进行数据提交
+                    $buyCar.save([{
+                        "amount": amount,
+                        "goodsId": goodsId,
+                        "supplierId": supplierId
+                    }]).then(function () {
+
+                    })
+                }
+                //结算发送请求
+                $scope.balance=function () {
+                    $buyCar.listAllGroup({
+                        "goodsIds": $scope.goodsIds,
+                        "isClose": 1,
+                        "supplierIds": $scope.supplierIds
+                    }).then(function success(data) {
+                        console.log(data+'结算啦');
+                        $rootScope.data=data.data.content;
+                        $state.go('balance');
+                    })
+                }
+            }
+        }, function errorCallback(response) {
+            // 请求失败执行代码
+            console.log(213)
+        });
+
+    }])
+</script>
+</body>
+</html>

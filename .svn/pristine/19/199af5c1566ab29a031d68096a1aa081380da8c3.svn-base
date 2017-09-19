@@ -1,0 +1,56 @@
+var app = angular.module('njyApp',["njy-directive", "njy-model", "njy-config"])
+app.controller('DomeController',['$scope', 'management',function ($scope,management) {
+    $scope.arry=[];
+    $scope.names=null;
+
+    management.Allocation({
+        "data": {},
+        "pageNumber": 1,
+        "pageSize": 10
+
+    }).then(function successCallback(response) {
+        console.log('请求成功');
+        // console.log(((response.content).content));
+
+        for(var i=0,j=((response.content).content).length;i<j;i++ ){
+            $scope.names=((response.content).content)[i];
+             // console.log((($scope.names).assignStatus));
+             $scope.ls=(($scope.names).assignStatus);
+                console.log($scope.ls);
+            $scope.arry.push($scope.names);
+
+            // $scope.name = (($scope.names).assignStatus);
+            // console.log($scope.name);
+            // $scope.arr=[];
+            // $scope.jn1={'status':'已分配'}
+            // $scope.jn2={'status':'未分配'}
+            // for(var i=0, j=$scope.name.length;i<j;i++);
+            // if(($scope.name)[i]==0){
+            //     $scope.arr.push($scope.jn1)
+            // }else {
+            //     $scope.arr.push($scope.jn2)
+
+
+
+        }
+
+        console.log(response);
+        $scope.listArr = response.content.content;
+         $scope.mapage = (response.content).pageNum; /*当前页*/
+         $scope.sumPerPage = (response.content).numPerPage;/*总页数*/
+        console.log($scope.mapage);
+        console.log($scope.sumPerPage);
+
+
+
+
+    }), function errorCallback(response) {
+        console.log('请求失败')
+
+    }
+
+
+
+
+
+}])

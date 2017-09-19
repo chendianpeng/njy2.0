@@ -1,0 +1,175 @@
+<!--买家付款订单阶段-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<!--[if IE 8]>         <html xmlns:ng="http://angularjs.org" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html xmlns:ng="http://angularjs.org" class="no-js">
+<!--<![endif]-->
+<html lang="en" ng-app="njyApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit"><!-- 国产双核浏览器，启用极速模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <base href="/">
+    <title>买家付款</title>
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/su-pu/seller-qr.css">
+    <link rel="stylesheet" href="./css/su-pu/buy-fk.css">
+</head>
+<body ng-controller="myapp">
+<!--头部-->
+<div njy-pageheader></div>
+<!--农家易-->
+<div njy-pagelogo data-title="订单详情"></div>
+<div class="content w1200">
+    <div class="content-header">
+        <div class="content-header-l clearfix">
+            <p>订单号：59668039107</p>
+            <strong>等待采购商付款</strong><br>
+            <span>请你尽快确认付款，完成付款后供应商才会发货</span>
+        </div>
+        <div class="content-header-r clearfix">
+            <div class="jdt">
+                <!--进度条-->
+                <ul>
+                    <li class="l1 on"><i class="cur1"></i></li>
+                    <li class="l2 on"></li>
+                    <li class="l3 on"><i class="cur1"></i></li>
+                    <li class="l4 on"></li>
+                    <li class="l5 on"><i class="cur2"></i></li>
+                    <li class="l6"></li>
+                    <li class="l7"><i></i></li>
+                    <li class="l8"></li>
+                    <li class="l9"><i></i></li>
+                    <li class="l10"></li>
+                    <li class="l11"><i></i></li>
+                    <li class="l12"></li>
+                </ul>
+                <br>
+                <p class="jdt-p">
+                    <span>提交订单</span>
+                    <span>确认订单</span>
+                    <span>付款</span>
+                    <span>发货</span>
+                    <span>收货</span>
+                    <span>完成</span>
+                </p>
+                <p class="jdt-date">
+                    <span>2017-07-19</span>
+                    <i>12:37:12</i>
+                </p>
+                <p class="jdt-date">
+                    <span>2017-07-19</span>
+                    <i>12:37:12</i>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!--订单信息-->
+    <div class="order-xx">
+        <p>订单信息</p>
+        <div class="order-main">
+            <div class="order-mian-shr">
+                <span>收货人信息</span>
+                <p><i>收货信息：</i>老王，156022164，广州市天河区林和中路125号天宇花样二期裙楼4楼3wcoffice天宇清创社区4852900</p>
+            </div>
+            <div class="order-mian-gy">
+                <p class="gy">供应商信息</p>
+                <div class="gy-l">
+                    <p class="xx"><i>供应商信息：</i>广东省梅州李银河合作社</p>
+                    <p class="szd"><i>所在地:</i>广东省梅州市蕉岭县葱花大道123号</p>
+                </div>
+                <div class="gy-r">
+                    <p class="lxr"><i>联系人：</i>李银河</p>
+                    <p class="lxfs"><i>联系方式:</i>1561204032</p>
+                </div>
+
+            </div>
+            <div class="order-mian-ps">
+                <p class="ps">配送信息</p>
+                <p class="wl"><i>物流方式：</i>走快递</p>
+                <p class="yf"><i>运费:</i>20.00</p>
+            </div>
+            <div class="order-mian-mjly">
+                <p class="mjly">买家留言</p>
+                <span>买家留言，买家留言，买家留言，买家留言，买家留言，买家留言，买家留言，买家留言，买家留言，买家留言，买家留言，买家留言，买家留言，买家留言，买家留言，买家留言，买家留言，买家留言，买家留言，买家留言，买家留言，买家留言，买家留言，买家留言，买家留言，买家留言，买家留言，买家留言，</span>
+            </div>
+            <div class="order-mian-spxx">
+                <p>商品信息</p>
+                <div class="spxx-list">
+                    <ul class="spxx-title clearfix">
+                        <li class="spxx-title-sp1">商品名称</li>
+                        <li class="spxx-title-sp2">状态</li>
+                        <li class="spxx-title-sp3">单价/规格</li>
+                        <li class="spxx-title-sp4">数量</li>
+                        <li class="spxx-title-sp5">小计</li>
+                    </ul>
+                    <div class="spxx-order">
+                        <ul class="clearfix">
+                            <li class="spxx-order-l1">
+                                <div class="spxx-order-img">
+                                    <img src="./img/su-pu/commodity.jpg" alt="">
+                                </div>
+                                <div class="spxx-order-a">
+                                    <a href="javascript:;">抬升有机红枫岭小番茄 mahota农产品新鲜素材上海同城配送</a>
+                                </div>
+
+
+                            </li>
+                            <li class="spxx-order-l2">待确认</li>
+                            <li class="spxx-order-l3"><strong>¥7.00</strong>/斤</li>
+                            <li class="spxx-order-l4">350</li>
+                            <li class="spxx-order-l5"><strong>¥2450.00</strong></li>
+                        </ul>
+
+                    </div>
+                    <p class="zje">
+                        商品总金额（不含运费）:&nbsp;<strong class="zjecur">Y2450</strong>
+                    </p>
+                    <!--<p class="gj">-->
+                        <!--（供应商改价）:&nbsp;<strong>Y2450</strong>-->
+                    <!--</p>-->
+                    <p class="yf">
+                        运费:&nbsp;<strong>Y2450</strong>
+                    </p>
+                    <p class="yf2">
+                        应付:&nbsp;<strong>¥2450.00</strong><i>&nbsp;元</i>
+                    </p>
+                </div>
+            </div>
+            <p class="qrfk">
+                <button>确认付款</button>
+            </p>
+        </div>
+    </div>
+
+</div>
+<!--尾部-->
+<div njy-pagefoot></div>
+
+<!--确认订单弹窗-->
+<div class="qrddAlert" style="display: none">
+    <div class="qrAlert">
+        确认订单成功，请等待采购商付款
+        <button class="qrbtn">
+            确认
+        </button>
+    </div>
+</div>
+<!--js-->
+<script src="./js/My97DatePicker/WdatePicker.js"></script>
+<script src="./js/vendor/jquery-1.8.2.min.js"></script>
+<script src="./js/vendor/jquery.placeholder.js"></script>
+<script src="./js/lib/angular-1.2.32/angular.js"></script>
+<script src="./js/vendor/modernizr-2.6.2.min.js"></script>
+<script src="./js/util.js"></script>
+<script src="./js/config.js"></script>
+<script src="./js/directive/directives.js"></script>
+<script src="./js/model/model.js"></script>
+<script src="./js/index.js"></script>
+<script src="./js/su-pu/buy-fk.js"></script>
+</body>
+</html>

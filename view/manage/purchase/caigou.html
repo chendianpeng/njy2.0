@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<!--[if IE 8]>         <html xmlns:ng="http://angularjs.org" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html xmlns:ng="http://angularjs.org" class="no-js">
+<!--<![endif]-->
+<html lang="en" ng-app="njyApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit"><!-- 国产双核浏览器，启用极速模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <base href="/">
+    <title>采购订单</title>
+    <!--<link rel="stylesheet" href="./js/My97DatePicker/skin/WdatePicker.css">-->
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/su-pu/l-nav.css">
+    <link rel="stylesheet" href="./css/su-pu/gongying.css">
+    <link rel="stylesheet" href="./css/su-pu/g-c-common.css">
+</head>
+<body ng-controller="my-app">
+<!--头部-->
+<div njy-pageheader></div>
+<!--农家易-->
+<div njy-pagelogo data-title="农加易管理"  data-right="backToIndex"></div>
+<!--主要内容-->
+<div class="w1200 l-main">
+    <div class="l-nav_list">
+        <span><a href="../index.html">首页</a></span>&nbsp;&#62;
+        <span><a href="../manager/m_commodity.html">农加易管理</a></span>&nbsp;&#62;
+        <span><a href="#">采购商信息</a></span>
+    </div>
+    <div class="content">
+        <div class="content-l">
+            <div class="p18px njygl">
+                农家易管理
+            </div>
+            <ul class="gy cg">
+                <p class="p50px gygl cggl"><img src="./img/su-pu/m_logo.png" alt="" class="imgs">供应管理</p>
+                <li class="p50px m-t-b20"><a href="javascript:;">商品管理</a></li>
+                <li class="p50px m-b20"><a  href="javascript:;">供应订单</a></li>
+                <li class="p50px m-b20"><a href="javascript:;">供应商信息</a></li>
+            </ul>
+            <ul class="gy">
+                <p class="p50px gygl "><img src="./img/su-pu/c_icon_c.png" alt="" class="imgs">采购管理</p>
+                <li class="p50px m-t-b20"><a class="cura" href="javascript:;">采购订单</a></li>
+                <li class="p50px m-b20"><a href="javascript:;">采购商信息</a></li>
+            </ul>
+        </div>
+        <div class="content-r">
+            <ul class="content-r-tab clearfix">
+                <li ng-class="{tabcur:tabType=='taball'}" ng-click="tabclick('taball')">所有订单 <i></i></li>
+                <li ng-class="{tabcur:tabType=='dqr'}" ng-click="tabclick('dqr')">待确认 <i></i></li>
+                <li ng-class="{tabcur:tabType=='dfk'}" ng-click="tabclick('dfk')">待付款 <i></i></li>
+                <li ng-class="{tabcur:tabType=='dfh'}" ng-click="tabclick('dfh')">待发货 <i></i></li>
+                <li ng-class="{tabcur:tabType=='dsh'}" ng-click="tabclick('dsh')">待收货 <i></i></li>
+                <li ng-class="{tabcur:tabType=='ywc'}" ng-click="tabclick('ywc')">已完成 <i></i></li>
+                <li ng-class="{tabcur:tabType=='ygb'}" ng-click="tabclick('ygb')">已关闭</li>
+            </ul>
+            <div class="search">
+                <p class="search-title">
+                    <input type="text" placeholder="输入商品标题或订单号进行搜索">
+                    <button>搜索</button>
+                </p>
+                <p class="search-status">
+                    <label for="stt">订单状态</label>
+                    <select id="stt">
+                        <option value="全部">全部</option>
+                        <option value="待确认">待确认</option>
+                        <option value="待付款">待付款</option>
+                        <option value="待发货">待发货</option>
+                        <option value="待收货">待收货</option>
+                        <option value="已完成">已完成</option>
+                        <option value="已关闭">已关闭</option>
+
+                    </select>
+                    <label for="stt-name">采购商名称</label>
+                    <input type="text" id="stt-name">
+                </p>
+                <p class="search-date">
+                    <label for="sDate">下单时间</label>
+                    <input id="sDate" class="Wdate"
+                           onclick="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'eDate\')}'})"/>
+                    <span></span>
+                    <input id="eDate" ng-model="oMarket" class="Wdate"
+                           onclick="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'sDate\')}'})"/>
+                </p>
+                <p class="search-btn">
+                    <button  ng-class="{btncur:tabType=='taball'}" ng-click="sclick()">搜索</button>
+                </p>
+
+            </div>
+            <!--订单列表标题-->
+            <div class="list-title">
+                <span class="sp1">商品</span>
+                <span class="sp2">商品操作</span>
+                <span class="sp3">单价（元）</span>
+                <span class="sp4">数量</span>
+                <span class="sp5">实付款（元）</span>
+                <span class="sp6">订单状态</span>
+                <span class="sp7">操作</span>
+            </div>
+            <!--具体订单-->
+            <div class="list-order">
+
+                <table cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td colspan="7" class="td-title">
+                            <span>订单编号:31412434</span>
+                            <span>2017-11-13</span>
+                            <span>采购商：广东梅州市奶粉啥</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1">
+                            <div>
+                                <div class="td1-img">
+                                    <img src="./img/su-pu/commodity.jpg" alt="">
+                                </div>
+                                <div class="td1-a">
+                                    <a href="javascript:;">
+                                        美味冷冻智力原味三文鱼拍240G4片分享装海鲜
+                                    </a>
+                                </div>
+
+                            </div>
+                        </td>
+                        <td class="td2"><a href="javascript:;">申请退款</a></td>
+                        <td class="td3">27.00</td>
+                        <td class="td4">2</td>
+                        <td class="td5" rowspan="3">232.00 <br>(含运费10元)</td>
+                        <td class="td6" rowspan="3">代发货</td>
+                        <td class="td7" rowspan="3">
+                            <a href="javascript:;">订单详情</a><br>
+                            <a href="javascript:;" ng-click="qxddclick()">取消订单</a><br>
+                            <a href="javascript:;">去发货</a></td>
+                    </tr>
+                    <tr>
+                        <td class="td1">
+                            <div>
+                                <div class="td1-img">
+                                    <img src="./img/su-pu/commodity.jpg" alt="">
+                                </div>
+                                <div class="td1-a">
+                                    <a href="javascript:;">
+                                        美味冷冻智力原味三文鱼拍240G4片分享装海鲜
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="td2"><a href="javascript:;">申请退款</a></td>
+                        <td class="td3">27.00</td>
+                        <td class="td4">2</td>
+
+                    </tr>
+                    <tr>
+                        <td class="td1">
+                            <div>
+                                <div class="td1-img">
+                                    <img src="./img/su-pu/commodity.jpg" alt="">
+                                </div>
+                                <div class="td1-a">
+                                    <a href="javascript:;">
+                                        美味冷冻智力原味三文鱼拍240G4片分享装海鲜
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="td2"><a href="javascript:;">申请退款</a></td>
+                        <td class="td3">27.00</td>
+                        <td class="td4">2</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="list-order">
+                <table cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td colspan="7" class="td-title">
+                            <span>订单编号:31412434</span>
+                            <span>2017-11-13</span>
+                            <span>采购商：广东梅州市奶粉啥</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1">
+                            <div>
+                                <div class="td1-img">
+                                    <img src="./img/su-pu/commodity.jpg" alt="">
+                                </div>
+                                <div class="td1-a">
+                                    <a href="javascript:;">
+                                        美味冷冻智力原味三文鱼拍240G4片分享装海鲜
+                                    </a>
+                                </div>
+
+                            </div>
+                        </td>
+                        <td class="td2"><a href="javascript:;">申请退款</a></td>
+                        <td class="td3">27.00</td>
+                        <td class="td4">2</td>
+                        <td class="td5" rowspan="3">232.00 <br>(含运费10元)</td>
+                        <td class="td6" rowspan="3">代发货</td>
+                        <td class="td7" rowspan="3">
+                            <a href="javascript:;">订单详情</a><br>
+                            <a href="javascript:;">取消订单</a><br>
+                            <a href="javascript:;">去发货</a></td>
+                    </tr>
+                </table>
+            </div>
+
+            <!--分页-->
+            <div njy-pager current-page="1" total-page="10" get-list="getListByPage(page)"></div>
+
+        </div>
+
+
+    </div>
+</div>
+<!--尾部-->
+<div njy-pagefoot></div>
+
+
+
+
+
+<!--取消订单弹窗-->
+<div class="gyalert" ng-show="isqx">
+    <p>你确定取消该订单吗？取消订单后，不能恢复</p>
+    <p>请选择取消订单的原因：<select name="" id="gyalertse">
+        <option value="请选择原因">请选择原因</option>
+        <option value="没货了交易无法完成">没货了交易无法完成</option>
+        <option value="买家信息填写有误">买家信息填写有误</option>
+        <option value="长时间联系不到买家，交易不成功">长时间联系不到买家，交易不成功</option>
+        <option value="买家不想购买了">买家不想购买了</option>
+        <option value="线下完成交易">线下完成交易</option>
+        <option value="其他">其他</option>
+    </select>
+    </p>
+    <span class="fh" ng-click="fhclick(isqx=false)">返回</span>
+    <span class="qd" ng-click="qdclick()">确定</span>
+</div>
+
+<!--js-->
+<script src="../../../js/My97DatePicker/WdatePicker.js"></script>
+<script src="./js/vendor/jquery-1.8.2.min.js"></script>
+<script src="./js/vendor/jquery.placeholder.js"></script>
+<script src="./js/lib/angular-1.2.32/angular.js"></script>
+<script src="./js/vendor/modernizr-2.6.2.min.js"></script>
+<script src="./js/util.js"></script>
+<script src="./js/config.js"></script>
+<script src="./js/directive/directives.js"></script>
+<script src="./js/model/model.js"></script>
+<script src="./js/index.js"></script>
+<script src="./js/su-pu/caigou.js"></script>
+
+
+</body>
+</html>

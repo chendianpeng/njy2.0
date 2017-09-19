@@ -1,0 +1,190 @@
+/*product_List*/
+
+.product_List {
+}
+
+.product_List .selectBox {
+    overflow: hidden;
+    background-color: #fff;
+    margin-bottom: 20px;
+}
+
+.product_List .selectBox .sname {
+    background-color: #ececec;
+}
+
+.product_List .selectBox .sname p {
+    padding: 17px 0;
+    color: #333;
+    margin-left: 20px;
+}
+
+.product_List .block {
+    padding: 8px 0 0 0;
+}
+
+.product_List .block .key {
+    float: left;
+    width: 76px;
+    font-size: 12px;
+    color: #666;
+    display: inline-block;
+}
+
+.product_List .block li a {
+    font-size: 12px;
+    color: #333;
+    display: inline-block;
+    min-width: 50px;
+}
+.product_List .block .productType{
+    padding-left: 20px;
+    font-size: 14px;
+    height: 44px;
+    line-height: 44px;
+}
+.product_List .block .productType label{
+    color:#999;
+}
+.product_List .block .productType span{
+    margin-right: 26px;
+    padding:2px 13px;
+    cursor: pointer;
+}
+.product_List .block .productType .select{
+    background-color: #0984c0;
+    color:#fff;
+}
+.product_List .block .value {
+    font-size: 12px;
+    border-bottom: 1px solid #eee;
+    padding-left: 20px;
+    color: #666;
+    overflow: hidden;
+    float: left;
+    width: 100%;
+}
+.product_List .block .value .select{
+    color: #0984c0;
+}
+.product_List .select_line:last-child .value{
+    border-bottom: 1px solid #cccccc;
+}
+.product_List .select_line {
+    height: 44px;
+    line-height: 44px;
+    clear: both;
+}
+.product_List .select_line ul{
+    margin-left: 76px;
+}
+.product_List .selectBox li {
+    display: inline-block;
+    padding-right: 10px;
+}
+
+.product_List .selectBox a {
+    color: #666666;
+    display: inline-block;
+}
+
+.product_List .selectBox .checked {
+    color: #0984c0;
+    font-size: 12px;
+}
+.product_List .select_show {
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    padding: 5px 0;
+    font-size: 14px;
+}
+.product_List .select_show span {
+    vertical-align: middle;
+    cursor: pointer;
+}
+.product_List .toolBar{
+    background-color: #ececec;
+    height: 46px;
+    line-height: 46px;
+    font-size: 12px;
+}
+.product_List .toolBar .condition{
+    display: inline-block;
+    margin-left: 30px;
+    font-size: 0;
+}
+
+.product_List .toolBar .condition span{
+    font-size: 12px;
+    color:#666;
+    margin-right: 18px;
+    cursor: pointer;
+}
+.product_List .toolBar .condition .select,
+.product_List .toolBar .condition .select2{
+    color:#0984c0;
+}
+.product_List .toolBar .condition .icon{
+    background: url('../../res/img/list_icon.png') no-repeat;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-position:-57px -7px;
+}
+.product_List .toolBar .condition .icon2{
+    background: url('../../res/img/list_icon.png') no-repeat;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-position:-34px -24px;
+}
+.product_List .condition .select .icon{
+    background-position:-34px -7px;
+}
+.product_List .condition .select2 .icon{
+    background-position:-8px -23px;
+}
+.product_List .toolBar .condition em{
+    margin-left: 7px;
+}
+
+.product_List .toolBar .region{
+    float: right;
+    display: inline-block;
+    color:#666;
+}
+.product_List .toolBar .region .data{
+    display: inline-block;
+    float: left;
+    margin-right: 23px;
+}
+.product_List .toolBar .region .data .inputBox{
+    display: inline-block;
+    position: relative;
+    width: 60px;
+    height: 25px;
+    line-height: 25px;
+}
+.product_List .toolBar .region .data .inputBox input{
+    width: 100%;
+    border: 1px solid #e2e2e2;
+}
+.product_List .toolBar .region .data .inputBox .moneyIcon{
+    position: absolute;
+    top: 0;
+    left: 7px;
+    color:#cccccc;
+}
+.product_List .toolBar .region .regionBtn{
+    width: 58px;
+    height:26px;
+    line-height: 25px;
+    border: 1px solid #cccccc;
+    background-color: #fff;
+    font-size: 12px;
+    padding:0;
+    float: left;
+    margin: 10px 20px 0 0 ;
+
+}
